@@ -1,1 +1,1 @@
-# pennywise__app
+# pennywise_app
