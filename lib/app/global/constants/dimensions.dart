@@ -1,4 +1,6 @@
-const double fieldWidth = 360;
-const double fieldHeight = 60;
+const double fieldWidth = 350;
+const double fieldHeight = 50;
 
 const double fontSize = 18;
+
+const double bRadius = 40;

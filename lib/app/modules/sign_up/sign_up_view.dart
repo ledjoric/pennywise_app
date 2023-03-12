@@ -20,38 +20,36 @@ class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AppTextFormField(
-                label: 'First name',
-                icon: Icons.person_rounded,
-                controller: firstNameController,
-              ),
-              AppTextFormField(
-                label: 'Last name',
-                icon: Icons.person_rounded,
-                controller: lastNameController,
-              ),
-              AppTextFormField(
-                label: 'Phone number',
-                icon: Icons.phone_android_rounded,
-                controller: phoneNumberController,
-              ),
-              AppTextFormField(
-                label: 'Password',
-                icon: Icons.lock_rounded,
-                controller: passwordController,
-              ),
-              AppFilledButton(
-                text: 'Sign Up',
-                color: tertiaryColor,
-                onPressed: () {},
-              ),
-            ],
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppTextFormField(
+              label: 'First name',
+              icon: Icons.person_rounded,
+              controller: firstNameController,
+            ),
+            AppTextFormField(
+              label: 'Last name',
+              icon: Icons.person_rounded,
+              controller: lastNameController,
+            ),
+            AppTextFormField(
+              label: 'Phone number',
+              icon: Icons.phone_android_rounded,
+              controller: phoneNumberController,
+            ),
+            AppTextFormField(
+              label: 'Password',
+              icon: Icons.lock_rounded,
+              controller: passwordController,
+            ),
+            AppFilledButton(
+              text: 'Sign Up',
+              color: tertiaryColor,
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
     );

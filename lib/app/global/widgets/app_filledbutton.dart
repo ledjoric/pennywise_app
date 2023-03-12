@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pennywise_app/app/global/constants/dimensions.dart';
+import 'package:pennywise_app/app/global/constants/styles.dart';
 
 class AppFilledButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -25,7 +26,7 @@ class AppFilledButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(fontSize: fontSize),
+          style: kFieldStyle,
         ),
       ),
     );

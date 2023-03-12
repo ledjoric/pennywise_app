@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/dimensions.dart';
 
+import '../constants/styles.dart';
+
 class AppTextFormField extends StatelessWidget {
   final String label;
   final IconData icon;
@@ -24,33 +26,12 @@ class AppTextFormField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           filled: true,
-          enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: transparent,
-            ),
-            borderRadius: BorderRadius.circular(
-              40,
-            ),
-          ),
-          border: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: transparent,
-            ),
-            borderRadius: BorderRadius.circular(
-              40,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: transparent,
-            ),
-            borderRadius: BorderRadius.circular(
-              40,
-            ),
-          ),
+          enabledBorder: kFieldBorder,
+          border: kFieldBorder,
+          focusedBorder: kFieldBorder,
           prefixIcon: Icon(icon),
           label: Text(label),
-          labelStyle: const TextStyle(fontSize: fontSize),
+          labelStyle: kFieldStyle,
           fillColor: greyLight,
         ),
       ),
