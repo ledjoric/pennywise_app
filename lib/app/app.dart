@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-
-import 'modules/sign_up/sign_up_view.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
+import 'package:pennywise_app/app/routes/route_pages.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SignUpView(),
+      initialRoute: signUp,
+      getPages: AppPages.pages,
     );
   }
 }
