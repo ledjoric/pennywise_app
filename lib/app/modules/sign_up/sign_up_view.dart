@@ -26,28 +26,28 @@ class _SignUpViewState extends State<SignUpView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AppTextFormField(
-              label: 'First name',
+              hint: 'First name',
               icon: Icons.person_rounded,
               controller: firstNameController,
             ),
             AppTextFormField(
-              label: 'Last name',
+              hint: 'Last name',
               icon: Icons.person_rounded,
               controller: lastNameController,
             ),
             AppTextFormField(
-              label: 'Phone number',
+              hint: 'Phone number',
               icon: Icons.phone_android_rounded,
               controller: phoneNumberController,
             ),
             AppTextFormField(
-              label: 'Password',
+              hint: 'Password',
               icon: Icons.lock_rounded,
               controller: passwordController,
               obscureText: true,
             ),
             AppTextFormField(
-              label: 'Re-enter password',
+              hint: 'Re-enter password',
               icon: Icons.lock_rounded,
               controller: confirmPWController,
               obscureText: true,
