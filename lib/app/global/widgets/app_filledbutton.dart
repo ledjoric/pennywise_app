@@ -17,7 +17,7 @@ class AppFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: fieldWidth,
+      width: double.maxFinite,
       height: fieldHeight,
       child: FilledButton(
         style: FilledButton.styleFrom(
@@ -26,7 +26,7 @@ class AppFilledButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: kFieldStyle,
+          style: kButtonStyle,
         ),
       ),
     );

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/dimensions.dart';
 
 import '../constants/styles.dart';
 
 class AppTextFormField extends StatelessWidget {
-  final String label;
+  final String hint;
   final IconData icon;
   final TextEditingController controller;
   final bool? obscureText;
 
   const AppTextFormField({
     Key? key,
-    required this.label,
+    required this.hint,
     required this.icon,
     required this.controller,
     this.obscureText,
@@ -23,8 +22,9 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: fieldHeight,
-      width: fieldWidth,
+      width: double.maxFinite,
       child: TextFormField(
+        style: kRegTextStyle,
         controller: controller,
         obscureText: obscureText ?? false,
         decoration: InputDecoration(
@@ -33,8 +33,8 @@ class AppTextFormField extends StatelessWidget {
           border: kFieldBorder,
           focusedBorder: kFieldBorder,
           prefixIcon: Icon(icon),
-          label: Text(label),
-          labelStyle: kFieldStyle,
+          hintText: hint,
+          hintStyle: kFieldStyle,
           fillColor: greyLight,
         ),
       ),
