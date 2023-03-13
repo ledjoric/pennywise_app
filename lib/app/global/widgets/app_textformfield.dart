@@ -22,7 +22,7 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: fieldHeight,
-      width: context.fieldWidth,
+      width: double.maxFinite,
       child: TextFormField(
         style: kRegTextStyle,
         controller: controller,
