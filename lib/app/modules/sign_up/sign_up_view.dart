@@ -14,6 +14,7 @@ class SignUpView extends StatefulWidget {
 class _SignUpViewState extends State<SignUpView> {
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPWController = TextEditingController();
@@ -34,6 +35,11 @@ class _SignUpViewState extends State<SignUpView> {
               label: 'Last name',
               icon: Icons.person_rounded,
               controller: lastNameController,
+            ),
+            AppTextFormField(
+              label: 'Email',
+              icon: Icons.alternate_email_rounded,
+              controller: emailController,
             ),
             AppTextFormField(
               label: 'Phone number',
