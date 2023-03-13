@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/dimensions.dart';
 
@@ -10,6 +9,7 @@ class AppTextFormField extends StatelessWidget {
   final IconData icon;
   final TextEditingController controller;
   final bool? obscureText;
+  final String? Function(String?) validator;
 
   const AppTextFormField({
     Key? key,
@@ -17,6 +17,7 @@ class AppTextFormField extends StatelessWidget {
     required this.icon,
     required this.controller,
     this.obscureText,
+    required this.validator,
   }) : super(key: key);
 
   @override
@@ -25,6 +26,7 @@ class AppTextFormField extends StatelessWidget {
       height: fieldHeight,
       width: fieldWidth,
       child: TextFormField(
+        validator: validator,
         controller: controller,
         obscureText: obscureText ?? false,
         decoration: InputDecoration(
