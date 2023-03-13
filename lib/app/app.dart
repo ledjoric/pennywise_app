@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      initialRoute: verifyCode,
+      initialRoute: logIn,
       getPages: AppPages.pages,
     );
   }
