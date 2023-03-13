@@ -5,7 +5,6 @@ import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_controller.dart';
-import 'package:pennywise_app/app/services/dio_requests.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class _SignUpViewState extends State<SignUpView> {
   final passwordController = TextEditingController();
   final confirmPWController = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class _SignUpViewState extends State<SignUpView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Form(
-              key: _formKey,
+              key: controller.formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -64,7 +63,9 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                   AppTextFormField(
                     validator: (value) => controller.passwordValidate(
-                        value, confirmPWController.text),
+                      value,
+                      confirmPWController.text,
+                    ),
                     label: 'Password',
                     icon: Icons.lock_rounded,
                     controller: passwordController,
@@ -72,7 +73,9 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                   AppTextFormField(
                     validator: (value) => controller.passwordValidate(
-                        value, passwordController.text),
+                      value,
+                      passwordController.text,
+                    ),
                     label: 'Re-enter password',
                     icon: Icons.lock_rounded,
                     controller: confirmPWController,
@@ -82,7 +85,7 @@ class _SignUpViewState extends State<SignUpView> {
                     text: 'Sign Up',
                     color: tertiaryColor,
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (controller.formKey.currentState!.validate()) {
                         controller.signUpUser(
                           data: RegisterData(
                             firstName: firstNameController.text,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
@@ -5,6 +6,8 @@ import 'package:pennywise_app/app/services/dio_requests.dart';
 class SignUpController extends GetxController {
   var emailError = ''.obs;
   var mobileError = ''.obs;
+
+  final formKey = GlobalKey<FormState>();
 
   void signUpUser({required RegisterData data}) {
     DioRequest.register(data).then((value) {
@@ -15,6 +18,7 @@ class SignUpController extends GetxController {
         emailError.value = '';
         mobileError.value = '';
       }
+      if (formKey.currentState!.validate()) {}
     });
   }
 
