@@ -3,6 +3,8 @@ import 'package:pennywise_app/app/modules/login/login_view.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_view.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
+import '../modules/verify_code/verify_view.dart';
+
 class AppPages {
   static var pages = [
     GetPage(
@@ -12,6 +14,10 @@ class AppPages {
     GetPage(
       name: logIn,
       page: () => const LoginView(),
+    ),
+    GetPage(
+      name: verifyCode,
+      page: () => const VerifyView(),
     ),
   ];
 }
