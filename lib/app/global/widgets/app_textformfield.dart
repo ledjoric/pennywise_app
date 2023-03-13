@@ -6,14 +6,14 @@ import 'package:pennywise_app/app/global/constants/dimensions.dart';
 import '../constants/styles.dart';
 
 class AppTextFormField extends StatelessWidget {
-  final String label;
+  final String hint;
   final IconData icon;
   final TextEditingController controller;
   final bool? obscureText;
 
   const AppTextFormField({
     Key? key,
-    required this.label,
+    required this.hint,
     required this.icon,
     required this.controller,
     this.obscureText,
@@ -33,8 +33,8 @@ class AppTextFormField extends StatelessWidget {
           border: kFieldBorder,
           focusedBorder: kFieldBorder,
           prefixIcon: Icon(icon),
-          label: Text(label),
-          labelStyle: kFieldStyle,
+          hintText: hint,
+          hintStyle: kFieldStyle,
           fillColor: greyLight,
         ),
       ),

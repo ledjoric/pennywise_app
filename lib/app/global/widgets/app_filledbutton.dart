@@ -26,7 +26,7 @@ class AppFilledButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: kFieldStyle,
+          style: kButtonStyle,
         ),
       ),
     );
