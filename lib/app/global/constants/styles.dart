@@ -39,14 +39,22 @@ const kBoldTextStyle = TextStyle(
 );
 
 const kRegHeaderStyle = TextStyle(
-  fontSize: 26,
+  fontSize: headerFont,
   color: secondaryColor,
   fontFamily: appFont,
 );
 
 const kBoldHeaderStyle = TextStyle(
-  fontSize: 26,
+  fontSize: headerFont,
   color: secondaryColor,
   fontWeight: FontWeight.bold,
   fontFamily: appFont,
+);
+
+const kIconBox = BoxDecoration(
+  image: DecorationImage(
+    image: AssetImage(
+      "assets/images/logo.png",
+    ),
+  ),
 );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/dimensions.dart';
 
@@ -23,8 +22,9 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: fieldHeight,
-      width: fieldWidth,
+      width: context.fieldWidth,
       child: TextFormField(
+        style: kRegTextStyle,
         controller: controller,
         obscureText: obscureText ?? false,
         decoration: InputDecoration(

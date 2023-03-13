@@ -17,7 +17,7 @@ class AppFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: fieldWidth,
+      width: context.fieldWidth,
       height: fieldHeight,
       child: FilledButton(
         style: FilledButton.styleFrom(
