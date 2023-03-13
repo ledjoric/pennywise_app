@@ -38,10 +38,9 @@ dependencies:
   get: ^4.6.5
   dio: ^5.0.2
   firebase_core: ^2.7.1
+  pinput: ^2.2.31
   firebase_messaging: ^14.2.6
   firebase_auth: ^4.2.10
-  flutter_local_notifications: ^13.0.0
-  pinput: ^2.2.31
 
 dev_dependencies:
   flutter_test:
