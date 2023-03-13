@@ -16,6 +16,7 @@ class _SignUpViewState extends State<SignUpView> {
   final lastNameController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPWController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,13 @@ class _SignUpViewState extends State<SignUpView> {
               label: 'Password',
               icon: Icons.lock_rounded,
               controller: passwordController,
+              obscureText: true,
+            ),
+            AppTextFormField(
+              label: 'Re-enter password',
+              icon: Icons.lock_rounded,
+              controller: confirmPWController,
+              obscureText: true,
             ),
             AppFilledButton(
               text: 'Sign Up',

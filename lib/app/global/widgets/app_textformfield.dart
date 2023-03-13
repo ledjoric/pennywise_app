@@ -9,12 +9,14 @@ class AppTextFormField extends StatelessWidget {
   final String label;
   final IconData icon;
   final TextEditingController controller;
+  final bool? obscureText;
 
   const AppTextFormField({
     Key? key,
     required this.label,
     required this.icon,
     required this.controller,
+    this.obscureText,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class AppTextFormField extends StatelessWidget {
       width: fieldWidth,
       child: TextFormField(
         controller: controller,
+        obscureText: obscureText ?? false,
         decoration: InputDecoration(
           filled: true,
           enabledBorder: kFieldBorder,
