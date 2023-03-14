@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const LogoContainer(),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   const AppHeaderText(
                     text: 'sign in to',
                   ),
@@ -44,9 +44,9 @@ class _LoginViewState extends State<LoginView> {
                     text: 'pennywise.',
                     style: kBoldHeaderStyle,
                   ),
-                  SizedBox(height: 20),
-                  RedBox(),
-                  SizedBox(height: 60),
+                  const SizedBox(height: 20),
+                  const RedBox(),
+                  const SizedBox(height: 60),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -56,7 +56,7 @@ class _LoginViewState extends State<LoginView> {
                         icon: Icons.phone_android_rounded,
                         controller: phoneNumberController,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       AppTextFormField(
                         validator: (value) => null,
                         hint: 'Password...',
@@ -64,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                         controller: passwordController,
                         obscureText: true,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       AppFilledButton(
                         text: 'Sign In',
                         color: tertiaryColor,
@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                           debugPrint("Login");
                         },
                       ),
-                      SizedBox(height: 60),
+                      const SizedBox(height: 60),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
