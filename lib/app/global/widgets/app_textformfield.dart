@@ -9,6 +9,7 @@ class AppTextFormField extends StatelessWidget {
   final IconData icon;
   final TextEditingController controller;
   final bool? obscureText;
+  final String? Function(String?) validator;
 
   const AppTextFormField({
     Key? key,
@@ -16,6 +17,7 @@ class AppTextFormField extends StatelessWidget {
     required this.icon,
     required this.controller,
     this.obscureText,
+    required this.validator,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class AppTextFormField extends StatelessWidget {
       height: fieldHeight,
       width: double.maxFinite,
       child: TextFormField(
+        validator: validator,
         style: kRegTextStyle,
         controller: controller,
         obscureText: obscureText ?? false,
