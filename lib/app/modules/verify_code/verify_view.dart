@@ -57,11 +57,7 @@ class _VerifyViewState extends State<VerifyView> {
               color: tertiaryColor,
               onPressed: () {
                 // controller.verifyPhoneNumber();
-                controller.verifyOTP(code: otpController.text).then((value) {
-                  if (value) {
-                    Get.offAllNamed(logIn);
-                  }
-                });
+                controller.verifyOTP(code: otpController.text);
               },
             ),
             const SizedBox(height: 60),
@@ -77,7 +73,6 @@ class _VerifyViewState extends State<VerifyView> {
                   color: tertiaryColor,
                   onTap: () {
                     //placeholder
-                    controller.verifyPhoneNumber();
                     debugPrint("Register");
                   },
                   style: kBoldTextStyle,
