@@ -1,10 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://0c4f-136-158-28-135.ap.ngrok.io/api/auth',
+      baseUrl: 'https://81ae-110-93-82-74.ap.ngrok.io/api/auth',
       receiveDataWhenStatusError: true,
     ),
   );
@@ -23,6 +24,25 @@ class DioRequest {
 
       print(error);
       return error;
+    }
+  }
+
+  static Future login(LoginData data) async {
+    try {
+      var response = await _dio.post(
+        '/login',
+        data: data.toJson(),
+      );
+
+      if (response.statusCode == 200) {
+        print('LOGGED IN');
+        return true;
+      } else {
+        return false;
+      }
+    } on Exception catch (e) {
+      print(e);
+      return false;
     }
   }
 }

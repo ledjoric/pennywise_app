@@ -5,6 +5,8 @@ import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_controller.dart';
+import 'package:pennywise_app/app/modules/verify_code/verify_controller.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({Key? key}) : super(key: key);
@@ -26,6 +28,7 @@ class _SignUpViewState extends State<SignUpView> {
 
   @override
   Widget build(BuildContext context) {
+    var verifyController = Get.put(VerifyController());
     var controller = Get.put(SignUpController());
     return Scaffold(
       body: Center(
@@ -38,30 +41,35 @@ class _SignUpViewState extends State<SignUpView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppTextFormField(
+                    isLimited: false,
                     validator: (value) => controller.textFieldValidate(value),
                     hint: 'First name',
                     icon: Icons.person_rounded,
                     controller: firstNameController,
                   ),
                   AppTextFormField(
+                    isLimited: false,
                     validator: (value) => controller.textFieldValidate(value),
                     hint: 'Last name',
                     icon: Icons.person_rounded,
                     controller: lastNameController,
                   ),
                   AppTextFormField(
+                    isLimited: false,
                     validator: (value) => controller.emailValidate(value),
                     hint: 'Email',
                     icon: Icons.alternate_email_rounded,
                     controller: emailController,
                   ),
                   AppTextFormField(
+                    isLimited: true,
                     validator: (value) => controller.mobileValidate(value),
                     hint: 'Phone number',
                     icon: Icons.phone_android_rounded,
                     controller: phoneNumberController,
                   ),
                   AppTextFormField(
+                    isLimited: false,
                     validator: (value) => controller.passwordValidate(
                       value,
                       confirmPWController.text,
@@ -72,6 +80,7 @@ class _SignUpViewState extends State<SignUpView> {
                     obscureText: true,
                   ),
                   AppTextFormField(
+                    isLimited: false,
                     validator: (value) => controller.passwordValidate(
                       value,
                       passwordController.text,
@@ -86,6 +95,11 @@ class _SignUpViewState extends State<SignUpView> {
                     color: tertiaryColor,
                     onPressed: () {
                       if (controller.formKey.currentState!.validate()) {
+                        verifyController.phoneNumber.value =
+                            '+63${phoneNumberController.text.trim()}';
+                        verifyController.verifyPhoneNumber();
+                        Get.toNamed(verifyCode);
+
                         controller.signUpUser(
                           data: RegisterData(
                             firstName: firstNameController.text,
