@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VerifyController extends GetxController {
@@ -6,6 +7,8 @@ class VerifyController extends GetxController {
 
   var verificationId = ''.obs;
   var phoneNumber = '+639297888742'.obs;
+
+  // var otpController = TextEditingController().obs;
 
   void verifyPhoneNumber() async {
     await _auth.verifyPhoneNumber(
@@ -20,7 +23,7 @@ class VerifyController extends GetxController {
         codeAutoRetrievalTimeout: (verificationId) {});
   }
 
-  Future<bool> verifyOTP(String code) async {
+  Future<bool> verifyOTP({required String code}) async {
     var credentials =
         await _auth.signInWithCredential(PhoneAuthProvider.credential(
       verificationId: verificationId.value,
