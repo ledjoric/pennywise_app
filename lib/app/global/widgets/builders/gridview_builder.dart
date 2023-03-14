@@ -20,10 +20,9 @@ class GridViewBuilder extends StatelessWidget {
       physics: physics,
       scrollDirection: scrollDirection ?? Axis.vertical,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1, // set the number of columns to 1
-        // mainAxisSpacing: 1, // set the spacing between each item
-        childAspectRatio:
-            childAspectRatio ?? 1, // set the aspect ratio of each item
+        crossAxisCount: 1,
+        // mainAxisSpacing: 1,
+        childAspectRatio: childAspectRatio ?? 1,
       ),
       itemCount: 10,
       itemBuilder: (BuildContext context, int index) {

@@ -4,7 +4,7 @@ import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
-import 'package:pennywise_app/app/global/widgets/builders/horizontal_listview.dart';
+import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/global/widgets/transaction_card.dart';

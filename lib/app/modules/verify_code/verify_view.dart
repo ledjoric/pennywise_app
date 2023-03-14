@@ -9,7 +9,6 @@ import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/global/widgets/logo_container.dart';
 import 'package:pennywise_app/app/global/widgets/pinput.dart';
 import 'package:pennywise_app/app/modules/verify_code/verify_controller.dart';
-import 'package:pennywise_app/app/routes/route_names.dart';
 
 class VerifyView extends StatefulWidget {
   const VerifyView({Key? key}) : super(key: key);
@@ -57,11 +56,7 @@ class _VerifyViewState extends State<VerifyView> {
               color: tertiaryColor,
               onPressed: () {
                 // controller.verifyPhoneNumber();
-                controller.verifyOTP(code: otpController.text).then((value) {
-                  if (value) {
-                    Get.offAllNamed(logIn);
-                  }
-                });
+                controller.verifyOTP(code: otpController.text);
               },
             ),
             const SizedBox(height: 60),
@@ -77,7 +72,6 @@ class _VerifyViewState extends State<VerifyView> {
                   color: tertiaryColor,
                   onTap: () {
                     //placeholder
-                    controller.verifyPhoneNumber();
                     debugPrint("Register");
                   },
                   style: kBoldTextStyle,
