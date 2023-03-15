@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pennywise_app/app/global/widgets/amount_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/app_bottomsheet.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
@@ -31,10 +29,10 @@ class _SMAmountViewState extends State<SMAmountView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AppHeaderText(
+            const AppHeaderText(
               text: 'select amount',
             ),
-            IntrinsicWidth(
+            const IntrinsicWidth(
               child: AmountTextFormField(),
             ),
             AppFilledButton(
@@ -42,12 +40,12 @@ class _SMAmountViewState extends State<SMAmountView> {
               color: tertiaryColor,
               onPressed: () {
                 showModalBottomSheet(
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: kBottomSheetRadius,
                   ),
                   context: context,
                   builder: (BuildContext context) {
-                    return AppBottomSheet();
+                    return const AppBottomSheet();
                   },
                 );
               },

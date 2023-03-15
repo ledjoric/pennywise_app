@@ -31,9 +31,11 @@ class AppBottomSheet extends StatelessWidget {
             text: '280.75',
             style: kBoldHeaderStyle,
           ),
-          const GridViewBuilder(
-            listChild: ContactCard(),
-            physics: NeverScrollableScrollPhysics(),
+          GridViewBuilder(
+            listChild: ContactCard(
+              onTap: () {},
+            ),
+            physics: const NeverScrollableScrollPhysics(),
             childAspectRatio: 6,
           ),
           AppFilledButton(

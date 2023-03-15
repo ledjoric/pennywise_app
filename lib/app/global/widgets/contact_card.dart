@@ -6,23 +6,26 @@ import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import '../constants/styles.dart';
 
 class ContactCard extends StatelessWidget {
+  final void Function()? onTap;
   const ContactCard({
     Key? key,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const ListTile(
-      leading: CircleAvatar(
+    return ListTile(
+      onTap: onTap,
+      leading: const CircleAvatar(
         backgroundColor: tertiaryColor,
         radius: 32,
       ),
-      title: AppRegularText(
+      title: const AppRegularText(
         text: 'Jesse Ponkman',
         color: tertiaryColor,
         style: kBoldTextStyle,
       ),
-      subtitle: AppRegularText(
+      subtitle: const AppRegularText(
         text: '+63 918 247 5821',
         color: greyDark,
       ),
