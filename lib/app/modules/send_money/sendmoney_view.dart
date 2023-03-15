@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
@@ -9,7 +7,6 @@ import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import '../../global/constants/colors.dart';
 import '../../global/constants/styles.dart';
 import '../../global/widgets/app_headertext.dart';
-import '../../global/widgets/transaction_card.dart';
 
 class SendMoneyView extends StatefulWidget {
   const SendMoneyView({super.key});

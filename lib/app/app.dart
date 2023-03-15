@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      initialRoute: sendMoney,
+      initialRoute: sendMoneyAmount,
       getPages: AppPages.pages,
     );
   }
