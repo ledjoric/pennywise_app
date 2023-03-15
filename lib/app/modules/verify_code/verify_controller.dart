@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 
 import '../../routes/route_names.dart';
 
@@ -8,7 +9,7 @@ class VerifyController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
   var verificationId = ''.obs;
-  var phoneNumber = '+639297888742'.obs;
+  var phoneNumber = ''.obs;
 
   // var otpController = TextEditingController().obs;
 

@@ -10,6 +10,7 @@ class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final bool? obscureText;
   final String? Function(String?) validator;
+  final bool isLimited;
 
   const AppTextFormField({
     Key? key,
@@ -18,6 +19,7 @@ class AppTextFormField extends StatelessWidget {
     required this.controller,
     this.obscureText,
     required this.validator,
+    required this.isLimited,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,8 @@ class AppTextFormField extends StatelessWidget {
       height: fieldHeight,
       width: double.maxFinite,
       child: TextFormField(
+        keyboardType: isLimited ? TextInputType.number : null,
+        maxLength: isLimited ? 10 : null,
         validator: validator,
         style: kRegTextStyle,
         controller: controller,

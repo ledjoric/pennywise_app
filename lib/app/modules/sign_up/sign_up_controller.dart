@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
+import 'package:pennywise_app/app/modules/verify_code/verify_controller.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
 
 class SignUpController extends GetxController {
@@ -8,8 +10,9 @@ class SignUpController extends GetxController {
   var mobileError = ''.obs;
 
   final formKey = GlobalKey<FormState>();
+  var verifyController = Get.put(VerifyController());
 
-  void signUpUser({required RegisterData data}) {
+  void signUpUser({required RegisterData data, String phoneNumber = ''}) {
     DioRequest.register(data).then((value) {
       if (value != null) {
         emailError.value = value['email'].toString();
@@ -18,7 +21,11 @@ class SignUpController extends GetxController {
         emailError.value = '';
         mobileError.value = '';
       }
-      if (formKey.currentState!.validate()) {}
+      if (formKey.currentState!.validate()) {
+        verifyController.phoneNumber.value = '+63${phoneNumber.trim()}';
+        verifyController.verifyPhoneNumber();
+        Get.toNamed(verifyCode);
+      }
     });
   }
 
@@ -36,6 +43,7 @@ class SignUpController extends GetxController {
     if (!value!.isEmail) {
       return 'Please enter a correct email format.';
     } else if (emailError.isNotEmpty) {
+      emailError.value = '';
       return 'The email has already been taken.';
     } else if (value.isEmpty) {
       return 'Please enter some text';
@@ -47,6 +55,7 @@ class SignUpController extends GetxController {
     if (value!.isEmpty) {
       return 'Please enter you mobile number';
     } else if (mobileError.isNotEmpty) {
+      mobileError.value = '';
       return 'The mobile number has already been taken.';
     } else if (value.length < 10 && value.isNotEmpty) {
       return 'The mobile number must be at least 10 characters.';
