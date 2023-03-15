@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
-import 'package:pennywise_app/app/global/widgets/appbar.dart';
+import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
+import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
-import 'package:pennywise_app/app/global/widgets/quick_contacts.dart';
 import 'package:pennywise_app/app/global/widgets/transaction_card.dart';
 
 class DashboardView extends StatefulWidget {
@@ -32,41 +30,50 @@ class _DashboardViewState extends State<DashboardView> {
         backgroundColor: transparent,
         elevation: 0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          RedBox(),
-          const AppRegularText(
-            text: 'Your wallet balance is',
-            color: secondaryColor,
-          ),
-          const AppHeaderText(
-            text: '\$32,290.75',
-            style: kBalanceStyle,
-          ),
-          AppFilledButton(
-            text: 'Send Money',
-            color: tertiaryColor,
-            onPressed: () {},
-          ),
-          AppFilledButton(
-            text: 'Cash In',
-            color: transparent,
-            onPressed: () {},
-            style: kButtonStyle2,
-            outline: kOutlinedButton,
-          ),
-          const AppHeaderText(text: 'quick contacts'),
-          //replace with listviewbuilder
-          const QuickContacts(),
-          const AppHeaderText(text: 'transactions'),
-
-          //make a listviewbuilder for this one
-          TransactionCard(),
-          TransactionCard(),
-          TransactionCard(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const RedBox(),
+            const AppRegularText(
+              text: 'Your wallet balance is',
+              color: secondaryColor,
+            ),
+            const AppHeaderText(
+              text: '\$32,290.75',
+              style: kBalanceStyle,
+            ),
+            AppFilledButton(
+              text: 'Send Money',
+              color: tertiaryColor,
+              onPressed: () {},
+            ),
+            AppFilledButton(
+              text: 'Cash In',
+              color: transparent,
+              onPressed: () {},
+              style: kButtonStyle2,
+              outline: kOutlinedButton,
+            ),
+            const AppHeaderText(text: 'quick contacts'),
+            //replace with listviewbuilder
+            const SizedBox(
+              height: 100,
+              child: GridViewBuilder(
+                listChild: ContactBubble(color: tertiaryColor),
+                scrollDirection: Axis.horizontal,
+                childAspectRatio: 1.25,
+              ),
+            ),
+            const AppHeaderText(text: 'transactions'),
+            const GridViewBuilder(
+              listChild: TransactionCard(),
+              physics: NeverScrollableScrollPhysics(),
+              childAspectRatio: 5.5,
+            ),
+          ],
+        ),
       ),
     );
   }

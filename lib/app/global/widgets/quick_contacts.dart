@@ -12,7 +12,7 @@ class QuickContacts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
+      children: const [
         ContactBubble(
           color: tertiaryColor,
         ),

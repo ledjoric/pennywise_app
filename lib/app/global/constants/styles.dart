@@ -13,6 +13,11 @@ const BorderRadius kRadius = BorderRadius.all(
   Radius.circular(bRadius),
 );
 
+const BorderRadius kBottomSheetRadius = BorderRadius.only(
+  topLeft: Radius.circular(bRadius),
+  topRight: Radius.circular(bRadius),
+);
+
 const kFieldStyle = TextStyle(
   fontSize: fontSize,
   fontFamily: appFont,
