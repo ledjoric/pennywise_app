@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
+import '../../routes/route_names.dart';
+
 class VerifyController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
@@ -41,7 +43,5 @@ class VerifyController extends GetxController {
         'Sorry, the OTP entered is invalid. Please try again.',
       );
     }
-
-    // return credentials.user != null ? true : false;
   }
 }

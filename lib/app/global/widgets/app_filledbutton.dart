@@ -6,12 +6,16 @@ class AppFilledButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color color;
   final String text;
+  final BorderSide? outline;
+  final TextStyle? style;
 
   const AppFilledButton({
     Key? key,
     required this.text,
     required this.color,
     required this.onPressed,
+    this.outline,
+    this.style,
   }) : super(key: key);
 
   @override
@@ -22,11 +26,12 @@ class AppFilledButton extends StatelessWidget {
       child: FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: color,
+          side: outline ?? null,
         ),
         onPressed: onPressed,
         child: Text(
           text,
-          style: kButtonStyle,
+          style: style ?? kButtonStyle,
         ),
       ),
     );

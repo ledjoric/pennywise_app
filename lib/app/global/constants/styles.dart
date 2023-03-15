@@ -25,6 +25,13 @@ const kButtonStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kButtonStyle2 = TextStyle(
+  fontSize: fontSize,
+  fontFamily: appFont,
+  color: secondaryColor,
+  fontWeight: FontWeight.bold,
+);
+
 const kRegTextStyle = TextStyle(
   fontSize: fontSize,
   fontFamily: appFont,
@@ -44,6 +51,13 @@ const kRegHeaderStyle = TextStyle(
   fontFamily: appFont,
 );
 
+const kBalanceStyle = TextStyle(
+  fontSize: balanceFont,
+  color: secondaryColor,
+  fontFamily: appFont,
+  fontWeight: FontWeight.bold,
+);
+
 const kBoldHeaderStyle = TextStyle(
   fontSize: headerFont,
   color: secondaryColor,
@@ -57,4 +71,10 @@ const kIconBox = BoxDecoration(
       "assets/images/logo.png",
     ),
   ),
+);
+
+const kOutlinedButton = BorderSide(
+  width: 2.25,
+  color: secondaryColor,
+  style: BorderStyle.solid,
 );
