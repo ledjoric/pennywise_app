@@ -95,9 +95,10 @@ class _SignUpViewState extends State<SignUpView> {
                     color: tertiaryColor,
                     onPressed: () {
                       if (controller.formKey.currentState!.validate()) {
-                        verifyController.phoneNumber.value =
+                        verifyController.phoneNumber =
                             '+63${phoneNumberController.text.trim()}';
                         verifyController.verifyPhoneNumber();
+                        verifyController.isRegister = true;
                         Get.toNamed(verifyCode);
 
                         controller.signUpUser(

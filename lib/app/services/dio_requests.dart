@@ -5,7 +5,7 @@ import 'package:pennywise_app/app/models/register_data.dart';
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://81ae-110-93-82-74.ap.ngrok.io/api/auth',
+      baseUrl: 'https://23fc-110-93-82-74.ap.ngrok.io/api/auth',
       receiveDataWhenStatusError: true,
     ),
   );
