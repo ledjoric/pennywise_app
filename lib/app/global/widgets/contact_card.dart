@@ -5,8 +5,8 @@ import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 
 import '../constants/styles.dart';
 
-class TransactionCard extends StatelessWidget {
-  const TransactionCard({
+class ContactCard extends StatelessWidget {
+  const ContactCard({
     Key? key,
   }) : super(key: key);
 
@@ -18,17 +18,13 @@ class TransactionCard extends StatelessWidget {
         radius: 32,
       ),
       title: AppRegularText(
-        text: 'Parent',
+        text: 'Jesse Ponkman',
         color: tertiaryColor,
         style: kBoldTextStyle,
       ),
       subtitle: AppRegularText(
-        text: '16 Feb',
+        text: '+63 918 247 5821',
         color: greyDark,
-      ),
-      trailing: AppRegularText(
-        text: '-\$950.00',
-        color: tertiaryColor,
       ),
     );
   }
