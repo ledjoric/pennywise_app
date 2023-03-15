@@ -35,7 +35,7 @@ class VerifyController extends GetxController {
       if (credentials.user != null) {
         if (isRegister) {
           isRegister = false;
-          Get.toNamed(logIn);
+          Get.offAllNamed(logIn);
         } else {
           Get.offAllNamed(dashBoard);
         }
