@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/widgets/amount_textformfield.dart';
-import 'package:pennywise_app/app/global/widgets/app_bottomsheet.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
+import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 
 import '../../global/constants/colors.dart';
 import '../../global/constants/styles.dart';
@@ -15,6 +16,9 @@ class SMAmountView extends StatefulWidget {
 }
 
 class _SMAmountViewState extends State<SMAmountView> {
+  final _controller = Get.put(SendMoneyController());
+  final _formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,23 +36,18 @@ class _SMAmountViewState extends State<SMAmountView> {
             const AppHeaderText(
               text: 'select amount',
             ),
-            const IntrinsicWidth(
-              child: AmountTextFormField(),
+            IntrinsicWidth(
+              child: Form(
+                key: _formkey,
+                child: AmountTextFormField(
+                  controller: _controller.amountController,
+                ),
+              ),
             ),
             AppFilledButton(
               text: 'Continue',
               color: tertiaryColor,
-              onPressed: () {
-                showModalBottomSheet(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: kBottomSheetRadius,
-                  ),
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const AppBottomSheet();
-                  },
-                );
-              },
+              onPressed: () => _controller.viewTransactionSummary(context),
             ),
           ],
         ),

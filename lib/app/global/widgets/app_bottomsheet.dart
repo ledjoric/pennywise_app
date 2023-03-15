@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
-import 'package:pennywise_app/app/global/widgets/amount_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
@@ -11,8 +8,12 @@ import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
 
 class AppBottomSheet extends StatelessWidget {
+  final String amount;
+  final Function onTap;
   const AppBottomSheet({
     Key? key,
+    required this.onTap,
+    required this.amount,
   }) : super(key: key);
 
   @override
@@ -27,8 +28,8 @@ class AppBottomSheet extends StatelessWidget {
         children: [
           const RedBox(),
           const AppHeaderText(text: 'confirm transfer?'),
-          const AppHeaderText(
-            text: '280.75',
+          AppHeaderText(
+            text: '\$$amount',
             style: kBoldHeaderStyle,
           ),
           GridViewBuilder(
@@ -42,6 +43,7 @@ class AppBottomSheet extends StatelessWidget {
             text: 'Send Money',
             color: tertiaryColor,
             onPressed: () {
+              onTap();
               Navigator.pop(context);
             },
           ),

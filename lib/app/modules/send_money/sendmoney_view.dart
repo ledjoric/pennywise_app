@@ -4,6 +4,7 @@ import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/contact_card.dart';
+import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
 import '../../global/constants/colors.dart';
@@ -22,6 +23,7 @@ class _SendMoneyViewState extends State<SendMoneyView> {
 
   @override
   Widget build(BuildContext context) {
+    // var controller = Get.put(SendMoneyController());
     return Scaffold(
       appBar: AppBar(
         title: const AppHeaderText(
@@ -59,7 +61,7 @@ class _SendMoneyViewState extends State<SendMoneyView> {
             GridViewBuilder(
               listChild: ContactCard(
                 onTap: () {
-                  Get.put(sendMoneyAmount);
+                  Get.toNamed(sendMoneyAmount);
                 },
               ),
               physics: const NeverScrollableScrollPhysics(),

@@ -1,6 +1,6 @@
 class LoginData {
-  String mobile = '';
-  String password = '';
+  String? mobile;
+  String? password;
 
   LoginData({
     required this.mobile,

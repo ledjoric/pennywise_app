@@ -26,5 +26,13 @@ class AppPages {
       name: dashBoard,
       page: () => const DashboardView(),
     ),
+    GetPage(
+      name: sendMoney,
+      page: () => const SendMoneyView(),
+    ),
+    GetPage(
+      name: sendMoneyAmount,
+      page: () => const SMAmountView(),
+    ),
   ];
 }
