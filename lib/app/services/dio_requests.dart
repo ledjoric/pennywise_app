@@ -6,24 +6,23 @@ class DioRequest {
   static final _dio = Dio(
     BaseOptions(
       baseUrl: 'https://23fc-110-93-82-74.ap.ngrok.io/api/auth',
-      receiveDataWhenStatusError: true,
     ),
   );
 
   static Future register(RegisterData data) async {
-    var response = await _dio.post(
-      '/register',
-      data: data.toJson(),
-    );
+    try {
+      var response = await _dio.post(
+        '/register',
+        data: data.toJson(),
+      );
 
-    if (response.statusCode == 201) {
-      print('SUCCESSFULLY REGISTERED');
-      return null;
-    } else {
-      var error = response.data['errors'];
-
-      print(error);
-      return error;
+      if (response.statusCode == 201) {
+        print('SUCCESSFULLY REGISTERED');
+        return null;
+      }
+    } on DioError catch (e) {
+      var errorResponse = e.response!.data['errors'];
+      return errorResponse;
     }
   }
 
@@ -40,7 +39,7 @@ class DioRequest {
       } else {
         return false;
       }
-    } on Exception catch (e) {
+    } on DioError catch (e) {
       print(e);
       return false;
     }

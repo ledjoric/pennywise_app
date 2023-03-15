@@ -16,12 +16,13 @@ class SignUpController extends GetxController {
   void signUpUser({required RegisterData data, String phoneNumber = ''}) {
     DioRequest.register(data).then((value) {
       if (value != null) {
-        emailError.value = value['email'].toString();
+        emailError.value = value['email'].value;
         mobileError.value = value['mobile'].toString();
       } else {
         emailError.value = '';
         mobileError.value = '';
       }
+
       if (formKey.currentState!.validate()) {
         verifyController.phoneNumber = '+63${phoneNumber.trim()}';
         verifyController.verifyPhoneNumber();
