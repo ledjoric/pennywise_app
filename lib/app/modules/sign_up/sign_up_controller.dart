@@ -22,7 +22,7 @@ class SignUpController extends GetxController {
         mobileError.value = '';
       }
       if (formKey.currentState!.validate()) {
-        verifyController.phoneNumber.value = '+63${phoneNumber.trim()}';
+        verifyController.phoneNumber = '+63${phoneNumber.trim()}';
         verifyController.verifyPhoneNumber();
         Get.toNamed(verifyCode);
       }

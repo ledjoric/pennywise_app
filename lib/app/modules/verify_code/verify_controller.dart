@@ -1,27 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
-
-import '../../routes/route_names.dart';
 
 class VerifyController extends GetxController {
   final _auth = FirebaseAuth.instance;
 
-  var verificationId = ''.obs;
-  var phoneNumber = ''.obs;
+  var verificationId = '';
+  var phoneNumber = '';
+  bool isRegister = false;
 
   // var otpController = TextEditingController().obs;
 
   void verifyPhoneNumber() async {
     await _auth.verifyPhoneNumber(
-        phoneNumber: phoneNumber.value,
+        phoneNumber: phoneNumber,
         verificationCompleted: (credentials) async {
           // await _auth.signInWithCredential(credentials);
         },
         verificationFailed: (e) {},
         codeSent: ((verificationId, forceResendingToken) {
-          this.verificationId.value = verificationId;
+          this.verificationId = verificationId;
         }),
         codeAutoRetrievalTimeout: (verificationId) {});
   }
@@ -30,14 +28,19 @@ class VerifyController extends GetxController {
     try {
       var credentials =
           await _auth.signInWithCredential(PhoneAuthProvider.credential(
-        verificationId: verificationId.value,
+        verificationId: verificationId,
         smsCode: code,
       ));
 
       if (credentials.user != null) {
-        Get.toNamed(logIn);
+        if (isRegister) {
+          isRegister = false;
+          Get.toNamed(logIn);
+        } else {
+          Get.offAllNamed(dashBoard);
+        }
       }
-    } on Exception catch (e) {
+    } on Exception {
       Get.snackbar(
         'Verification Failed',
         'Sorry, the OTP entered is invalid. Please try again.',
