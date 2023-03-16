@@ -1,11 +1,11 @@
 class RegisterData {
-  String firstName = '';
-  String lastName = '';
-  String email = '';
-  int mobile = 0;
-  String password = '';
-  String confirmPassword = '';
-  String token = '';
+  String? firstName;
+  String? lastName;
+  String? email;
+  int? mobile;
+  String? password;
+  String? confirmPassword;
+  String? token;
 
   RegisterData(
       {required this.firstName,

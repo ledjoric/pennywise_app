@@ -67,8 +67,6 @@ class _DashboardViewState extends State<DashboardView> {
               ),
             ),
             const AppHeaderText(text: 'transactions'),
-
-            //make a listviewbuilder for this one
             const GridViewBuilder(
               listChild: TransactionCard(),
               physics: NeverScrollableScrollPhysics(),
