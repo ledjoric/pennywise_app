@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
+import 'package:pennywise_app/app/global/constants/strings.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
+import 'package:pennywise_app/app/global/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_bottomsheet.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
@@ -9,8 +12,11 @@ import 'package:pennywise_app/app/services/dio_requests.dart';
 class SendMoneyController extends GetxController {
   var amount = 0;
   var receiver = '';
+  var exist = false;
 
   final amountController = TextEditingController();
+
+  var userController = Get.put(UserController());
 
   void viewTransactionSummary(BuildContext context) {
     if (amountController.text.isNotEmpty) {
@@ -23,7 +29,7 @@ class SendMoneyController extends GetxController {
           return AppBottomSheet(
             amount: amountController.text,
             onTap: () => sendMoney(
-              1,
+              userController.userData.id,
               TransferData(
                 receiver: '9223456798',
                 amount: int.parse(amountController.text),
@@ -45,7 +51,7 @@ class SendMoneyController extends GetxController {
     }
   }
 
-  void sendMoney(int userId, TransferData data) {
+  void sendMoney(int? userId, TransferData data) {
     DioRequest.transfer(userId, data).then((value) {
       if (value) {
         Get.snackbar(
@@ -61,5 +67,30 @@ class SendMoneyController extends GetxController {
         print('TRANSFER FAILED');
       }
     });
+  }
+
+  String? recipientValidate(String? value) {
+    if (value == null || value.isEmpty) {
+      return emptyTextFieldError;
+    } else if (value.length == 10) {
+      if (!exist) {
+        return 'The phone number you entered is not registered with our app. Please check and try again.';
+      }
+    }
+    return null;
+  }
+
+  void recipientExist(String? value) async {
+    if (value == null || value.isEmpty || !value.isNum || value.length != 10) {
+      return;
+    }
+
+    if (await DioRequest.getReceiver(
+        userController.userData.id, int.parse(value))) {
+      exist = true;
+    } else {
+      exist = false;
+      // return 'The phone number you entered is not registered with our app. Please check and try again.';
+    }
   }
 }

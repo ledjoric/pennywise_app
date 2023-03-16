@@ -1,11 +1,14 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
+import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 
 class DioRequest {
   static final _dio = Dio(
@@ -53,7 +56,7 @@ class DioRequest {
     }
   }
 
-  static Future transfer(int userId, TransferData data) async {
+  static Future transfer(int? userId, TransferData data) async {
     try {
       var response = await _dio.post(
         '/user/transfer',
@@ -101,5 +104,24 @@ class DioRequest {
       return [];
     }
     return [];
+  }
+
+  static Future<bool> getReceiver(int? userId, int receiver) async {
+    try {
+      var response = await _dio.post(
+        '/user/transfer/receiver',
+        queryParameters: {'user': userId, 'receiver': receiver},
+      );
+
+      if (response.statusCode == 200) {
+        print('RECEIVER EXISTS');
+        var sendMoneyController = Get.put(SendMoneyController());
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      print('NUMBER IS NOT REGISTERED');
+      return false;
+    }
   }
 }

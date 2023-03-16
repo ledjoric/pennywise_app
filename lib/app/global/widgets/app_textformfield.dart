@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/dimensions.dart';
 
@@ -11,6 +12,8 @@ class AppTextFormField extends StatelessWidget {
   final bool? obscureText;
   final String? Function(String?) validator;
   final bool isLimited;
+  final AutovalidateMode? autovalidateMode;
+  final void Function(String)? onChanged;
 
   const AppTextFormField({
     Key? key,
@@ -20,6 +23,8 @@ class AppTextFormField extends StatelessWidget {
     this.obscureText,
     required this.validator,
     required this.isLimited,
+    this.autovalidateMode,
+    this.onChanged,
   }) : super(key: key);
 
   @override
@@ -28,6 +33,8 @@ class AppTextFormField extends StatelessWidget {
       height: fieldHeight,
       width: double.maxFinite,
       child: TextFormField(
+        onChanged: onChanged,
+        autovalidateMode: autovalidateMode,
         keyboardType: isLimited ? TextInputType.number : null,
         maxLength: isLimited ? 10 : null,
         validator: validator,

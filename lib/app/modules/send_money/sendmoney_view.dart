@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
-import 'package:pennywise_app/app/global/widgets/builders/transactions_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
@@ -22,10 +21,28 @@ class SendMoneyView extends StatefulWidget {
 
 class _SendMoneyViewState extends State<SendMoneyView> {
   final searchController = TextEditingController();
+  final _controller = Get.put(SendMoneyController());
 
   @override
   Widget build(BuildContext context) {
-    // var controller = Get.put(SendMoneyController());
+    Future<String?> getStringValue() async {
+      // This function returns a Future<String?>
+      return "Hello World";
+    }
+
+    Future<String?> _asyncValidator(String? value) async {
+      String? stringValue =
+          await getStringValue(); // Use `await` to get the value from the future
+      String plainString = stringValue ?? ''; // Convert the String? to a String
+      if (value == null || value.isEmpty) {
+        return "Please enter a value";
+      } else if (value != plainString) {
+        return "The entered value is incorrect";
+      }
+      return null; // Return null if the value is valid
+    }
+
+    //
     return Scaffold(
       appBar: AppBar(
         title: const AppHeaderText(
@@ -47,14 +64,16 @@ class _SendMoneyViewState extends State<SendMoneyView> {
                   const RedBox(),
                   const SizedBox(height: 40),
                   const AppHeaderText(
-                    text: 'select a recipient',
+                    text: 'recipient\'s number',
                   ),
                   const SizedBox(height: 20),
                   AppTextFormField(
-                    hint: 'Find a contact...',
+                    onChanged: (value) => _controller.recipientExist(value),
+                    autovalidateMode: AutovalidateMode.always,
+                    hint: 'Enter recipient\'s number...',
                     icon: Icons.phone_android_rounded,
                     controller: searchController,
-                    validator: (value) => null,
+                    validator: (value) => _controller.recipientValidate(value),
                     isLimited: false,
                   ),
                   const SizedBox(height: 40),
