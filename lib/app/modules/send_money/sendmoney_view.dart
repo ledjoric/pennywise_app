@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
-import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
+import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
+import 'package:pennywise_app/app/global/widgets/builders/transactions_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
@@ -51,14 +52,14 @@ class _SendMoneyViewState extends State<SendMoneyView> {
             const AppHeaderText(text: 'quick contacts'),
             const SizedBox(
               height: 100,
-              child: GridViewBuilder(
+              child: ConnectionsBuilder(
                 listChild: ContactBubble(color: tertiaryColor),
                 scrollDirection: Axis.horizontal,
                 childAspectRatio: 1.25,
               ),
             ),
             const AppHeaderText(text: 'contacts list'),
-            GridViewBuilder(
+            ConnectionsBuilder(
               listChild: ContactCard(
                 onTap: () {
                   Get.toNamed(sendMoneyAmount);

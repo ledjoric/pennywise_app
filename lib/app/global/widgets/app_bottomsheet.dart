@@ -3,7 +3,7 @@ import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
-import 'package:pennywise_app/app/global/widgets/builders/gridview_builder.dart';
+import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
 
@@ -32,7 +32,7 @@ class AppBottomSheet extends StatelessWidget {
             text: '\$$amount',
             style: kBoldHeaderStyle,
           ),
-          GridViewBuilder(
+          ConnectionsBuilder(
             listChild: ContactCard(
               onTap: () {},
             ),
