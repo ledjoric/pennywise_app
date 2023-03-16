@@ -43,6 +43,7 @@ class AppTextFormField extends StatelessWidget {
           hintText: hint,
           hintStyle: kFieldStyle,
           fillColor: greyLight,
+          counterText: "",
         ),
       ),
     );
