@@ -20,26 +20,31 @@ class TransactionsBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => transactions.isEmpty
-        ? const SizedBox(
-            height: 100,
-            child: Center(child: Text('NO TRANSACTION PA WALA KA ATA PERA')))
-        : GridView.builder(
-            shrinkWrap: true,
-            physics: physics,
-            scrollDirection: scrollDirection ?? Axis.vertical,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              // mainAxisSpacing: 1,
-              childAspectRatio: childAspectRatio ?? 1,
+    return Obx(
+      () => transactions.isEmpty
+          ? const SizedBox(
+              height: 100,
+              child: Center(
+                child: Text('NO TRANSACTION PA WALA KA ATA PERA'),
+              ),
+            )
+          : GridView.builder(
+              shrinkWrap: true,
+              physics: physics,
+              scrollDirection: scrollDirection ?? Axis.vertical,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1,
+                // mainAxisSpacing: 1,
+                childAspectRatio: childAspectRatio ?? 1,
+              ),
+              itemCount: transactions.length,
+              itemBuilder: (BuildContext context, int index) {
+                return TransactionCard(
+                    type: 'type',
+                    date: transactions[index].transactionDate,
+                    amount: transactions[index].amount.toString());
+              },
             ),
-            itemCount: transactions.length,
-            itemBuilder: (BuildContext context, int index) {
-              return TransactionCard(
-                  type: 'type',
-                  date: transactions[index].transactionDate,
-                  amount: transactions[index].amount.toString());
-            },
-          ));
+    );
   }
 }

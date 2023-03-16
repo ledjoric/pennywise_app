@@ -9,12 +9,16 @@ import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
 
 class AppBottomSheet extends StatelessWidget {
+  final String senderName;
+  final String receiverName;
   final String amount;
   final Function onTap;
   const AppBottomSheet({
     Key? key,
     required this.onTap,
     required this.amount,
+    required this.senderName,
+    required this.receiverName,
   }) : super(key: key);
 
   @override
@@ -46,9 +50,9 @@ class AppBottomSheet extends StatelessWidget {
             //   physics: const NeverScrollableScrollPhysics(),
             //   childAspectRatio: 6,
             // ),
-            const TransactionUsers(
-              sender: 'BEN',
-              receiver: 'JUAN',
+            TransactionUsers(
+              sender: senderName,
+              receiver: receiverName,
             ),
             const SizedBox(height: 60),
             AppFilledButton(

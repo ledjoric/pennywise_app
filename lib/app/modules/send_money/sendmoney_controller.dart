@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/strings.dart';
@@ -7,6 +6,8 @@ import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_bottomsheet.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
+import 'package:pennywise_app/app/models/user_data.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
 
 class SendMoneyController extends GetxController {
@@ -15,6 +16,10 @@ class SendMoneyController extends GetxController {
   var exist = false;
 
   final amountController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  var receiverData = UserData();
+
+  var connectionsData;
 
   var userController = Get.put(UserController());
 
@@ -27,11 +32,13 @@ class SendMoneyController extends GetxController {
         context: context,
         builder: (context) {
           return AppBottomSheet(
+            senderName: userController.userData.firstName ?? 'ME',
+            receiverName: receiverData.firstName ?? 'HE/SHE',
             amount: amountController.text,
             onTap: () => sendMoney(
               userController.userData.id,
               TransferData(
-                receiver: '9223456798',
+                receiver: userController.userData.mobile,
                 amount: int.parse(amountController.text),
               ),
             ),
@@ -85,12 +92,14 @@ class SendMoneyController extends GetxController {
       return;
     }
 
-    if (await DioRequest.getReceiver(
-        userController.userData.id, int.parse(value))) {
+    if (await DioRequest.getReceiver(1, int.parse(value))) {
       exist = true;
+      if (formKey.currentState!.validate()) {
+        Get.toNamed(sendMoneyAmount);
+      }
     } else {
       exist = false;
-      // return 'The phone number you entered is not registered with our app. Please check and try again.';
+      if (formKey.currentState!.validate()) {}
     }
   }
 }

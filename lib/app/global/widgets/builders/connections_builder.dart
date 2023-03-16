@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
+import 'package:pennywise_app/app/services/dio_requests.dart';
 
 class ConnectionsBuilder extends StatelessWidget {
-  final Widget listChild;
   final Axis? scrollDirection;
   final double? childAspectRatio;
   final ScrollPhysics? physics;
-  final List<Transactions>? transactions;
+  final dynamic connections;
+  final int connectionLength;
   const ConnectionsBuilder({
     super.key,
-    required this.listChild,
     this.scrollDirection,
     this.childAspectRatio,
     this.physics,
-    this.transactions,
+    required this.connections,
+    required this.connectionLength,
   });
 
   @override
@@ -27,9 +30,15 @@ class ConnectionsBuilder extends StatelessWidget {
         // mainAxisSpacing: 1,
         childAspectRatio: childAspectRatio ?? 1,
       ),
-      itemCount: 2,
+      itemCount: connectionLength,
       itemBuilder: (BuildContext context, int index) {
-        return listChild;
+        return ContactCard(
+          onTap: () {
+            DioRequest.getConnections(1);
+          },
+          name: connections[index][0]['firstName'],
+          mobile: connections[index][0]['mobile'],
+        );
       },
     );
   }
