@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pennywise_app/app/models/transaction_history_data.dart';
 
-class GridViewBuilder extends StatelessWidget {
+class ConnectionsBuilder extends StatelessWidget {
   final Widget listChild;
   final Axis? scrollDirection;
   final double? childAspectRatio;
   final ScrollPhysics? physics;
-  const GridViewBuilder({
+  final List<Transactions>? transactions;
+  const ConnectionsBuilder({
     super.key,
     required this.listChild,
     this.scrollDirection,
     this.childAspectRatio,
     this.physics,
+    this.transactions,
   });
 
   @override
