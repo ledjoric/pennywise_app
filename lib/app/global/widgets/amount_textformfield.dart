@@ -20,6 +20,7 @@ class AmountTextFormField extends StatelessWidget {
         // validator: validator,
         controller: controller,
         textAlign: TextAlign.center,
+        textAlignVertical: TextAlignVertical.bottom,
         keyboardType: TextInputType.number,
         style: kBoldHeaderStyle,
         decoration: const InputDecoration(
@@ -30,6 +31,10 @@ class AmountTextFormField extends StatelessWidget {
           prefixIconConstraints: BoxConstraints(
             minWidth: 0,
             minHeight: 0,
+          ),
+          hintText: '0.00',
+          contentPadding: EdgeInsets.only(
+            bottom: 12,
           ),
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/widgets/amount_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
+import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 
 import '../../global/constants/colors.dart';
@@ -31,25 +32,31 @@ class _SMAmountViewState extends State<SMAmountView> {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const AppHeaderText(
-              text: 'select amount',
-            ),
-            IntrinsicWidth(
-              child: Form(
-                key: _formkey,
-                child: AmountTextFormField(
-                  controller: _controller.amountController,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              const AppHeaderText(
+                text: 'select amount',
+              ),
+              const SizedBox(height: 10),
+              IntrinsicWidth(
+                child: Form(
+                  key: _formkey,
+                  child: AmountTextFormField(
+                    controller: _controller.amountController,
+                  ),
                 ),
               ),
-            ),
-            AppFilledButton(
-              text: 'Continue',
-              color: tertiaryColor,
-              onPressed: () => _controller.viewTransactionSummary(context),
-            ),
-          ],
+              const SizedBox(height: 20),
+              AppFilledButton(
+                text: 'Continue',
+                color: tertiaryColor,
+                onPressed: () => _controller.viewTransactionSummary(context),
+              ),
+            ],
+          ),
         ),
       ),
     );

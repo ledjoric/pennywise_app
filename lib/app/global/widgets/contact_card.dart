@@ -3,6 +3,7 @@ import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 
+import '../constants/dimensions.dart';
 import '../constants/styles.dart';
 
 class ContactCard extends StatelessWidget {
@@ -15,6 +16,9 @@ class ContactCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: const EdgeInsets.only(
+        left: 20,
+      ),
       onTap: onTap,
       leading: const CircleAvatar(
         backgroundColor: tertiaryColor,
