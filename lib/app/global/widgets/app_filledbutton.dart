@@ -26,7 +26,7 @@ class AppFilledButton extends StatelessWidget {
       child: FilledButton(
         style: FilledButton.styleFrom(
           backgroundColor: color,
-          side: outline ?? null,
+          side: outline,
         ),
         onPressed: onPressed,
         child: Text(

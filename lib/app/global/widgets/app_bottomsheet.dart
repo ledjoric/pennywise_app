@@ -3,10 +3,8 @@ import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
+import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/bottomsheet_users.dart';
-import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
-import 'package:pennywise_app/app/global/widgets/contact_card.dart';
-import 'package:pennywise_app/app/global/widgets/divider.dart';
 
 class AppBottomSheet extends StatelessWidget {
   final String amount;
@@ -55,8 +53,36 @@ class AppBottomSheet extends StatelessWidget {
               text: 'Send Money',
               color: tertiaryColor,
               onPressed: () {
-                onTap();
-                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: kRadius,
+                    ),
+                    content: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.check_circle_outline_rounded,
+                            size: 80,
+                            color: tertiaryColor,
+                          ),
+                          SizedBox(height: 20),
+                          AppHeaderText(text: 'Sent!'),
+                          SizedBox(height: 20),
+                          AppRegularText(
+                            text: 'Transaction successful.',
+                            color: secondaryColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+                //Navigator.pop(context);
               },
             ),
           ],
