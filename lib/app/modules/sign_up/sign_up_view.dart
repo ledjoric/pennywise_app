@@ -55,7 +55,7 @@ class _SignUpViewState extends State<SignUpView> {
                         text: 'create a new',
                       ),
                       const AppHeaderText(
-                        text: 'account',
+                        text: 'account.',
                         style: kBoldHeaderStyle,
                       ),
                       const SizedBox(height: 20),
@@ -65,7 +65,7 @@ class _SignUpViewState extends State<SignUpView> {
                         isLimited: false,
                         validator: (value) =>
                             controller.textFieldValidate(value),
-                        hint: 'First name',
+                        hint: 'First name...',
                         icon: Icons.person_rounded,
                         controller: firstNameController,
                       ),
@@ -74,7 +74,7 @@ class _SignUpViewState extends State<SignUpView> {
                         isLimited: false,
                         validator: (value) =>
                             controller.textFieldValidate(value),
-                        hint: 'Last name',
+                        hint: 'Last name...',
                         icon: Icons.person_rounded,
                         controller: lastNameController,
                       ),
@@ -82,7 +82,7 @@ class _SignUpViewState extends State<SignUpView> {
                       AppTextFormField(
                         isLimited: false,
                         validator: (value) => controller.emailValidate(value),
-                        hint: 'Email',
+                        hint: 'Email address...',
                         icon: Icons.alternate_email_rounded,
                         controller: emailController,
                       ),
@@ -90,7 +90,7 @@ class _SignUpViewState extends State<SignUpView> {
                       AppTextFormField(
                         isLimited: true,
                         validator: (value) => controller.mobileValidate(value),
-                        hint: 'Phone number',
+                        hint: 'Phone number...',
                         icon: Icons.phone_android_rounded,
                         controller: phoneNumberController,
                       ),
@@ -101,7 +101,7 @@ class _SignUpViewState extends State<SignUpView> {
                           value,
                           confirmPWController.text,
                         ),
-                        hint: 'Password',
+                        hint: 'Password...',
                         icon: Icons.lock_rounded,
                         controller: passwordController,
                         obscureText: true,
@@ -113,7 +113,7 @@ class _SignUpViewState extends State<SignUpView> {
                           value,
                           passwordController.text,
                         ),
-                        hint: 'Re-enter password',
+                        hint: 'Re-enter password...',
                         icon: Icons.lock_rounded,
                         controller: confirmPWController,
                         obscureText: true,

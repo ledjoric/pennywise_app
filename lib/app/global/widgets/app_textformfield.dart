@@ -34,6 +34,7 @@ class AppTextFormField extends StatelessWidget {
         style: kRegTextStyle,
         controller: controller,
         obscureText: obscureText ?? false,
+        textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
           filled: true,
           enabledBorder: kFieldBorder,

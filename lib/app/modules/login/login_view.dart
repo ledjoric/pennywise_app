@@ -30,81 +30,87 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     var controller = Get.put(LoginController());
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const LogoContainer(),
-            const SizedBox(height: 20),
-            const AppHeaderText(
-              text: 'sign in to',
-            ),
-            const AppHeaderText(
-              text: 'pennywise.',
-              style: kBoldHeaderStyle,
-            ),
-            const SizedBox(height: 20),
-            const RedBox(),
-            const SizedBox(height: 60),
-            Form(
-              key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppTextFormField(
-                    isLimited: true,
-                    validator: (value) => controller.textFieldValidate(value),
-                    hint: 'Phone number...',
-                    icon: Icons.phone_android_rounded,
-                    controller: phoneNumberController,
-                  ),
-                  const SizedBox(height: 20),
-                  AppTextFormField(
-                    isLimited: false,
-                    validator: (value) => controller.textFieldValidate(value),
-                    hint: 'Password...',
-                    icon: Icons.lock_rounded,
-                    controller: passwordController,
-                    obscureText: true,
-                  ),
-                  const SizedBox(height: 20),
-                  AppFilledButton(
-                    text: 'Sign In',
-                    color: tertiaryColor,
-                    onPressed: () {
-                      controller.login(
-                        data: LoginData(
-                          mobile: phoneNumberController.text,
-                          password: passwordController.text,
-                        ),
-                        phoneNumber: phoneNumberController.text,
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 60),
-                  Row(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const LogoContainer(),
+                const SizedBox(height: 20),
+                const AppHeaderText(
+                  text: 'sign in to',
+                ),
+                const AppHeaderText(
+                  text: 'pennywise.',
+                  style: kBoldHeaderStyle,
+                ),
+                const SizedBox(height: 20),
+                const RedBox(),
+                const SizedBox(height: 60),
+                Form(
+                  key: _formKey,
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const AppRegularText(
-                        text: 'Don\'t have an account?',
-                        color: tertiaryColor,
+                      AppTextFormField(
+                        isLimited: true,
+                        validator: (value) =>
+                            controller.textFieldValidate(value),
+                        hint: 'Phone number...',
+                        icon: Icons.phone_android_rounded,
+                        controller: phoneNumberController,
                       ),
-                      AppRegularText(
-                        text: ' Register.',
+                      const SizedBox(height: 20),
+                      AppTextFormField(
+                        isLimited: false,
+                        validator: (value) =>
+                            controller.textFieldValidate(value),
+                        hint: 'Password...',
+                        icon: Icons.lock_rounded,
+                        controller: passwordController,
+                        obscureText: true,
+                      ),
+                      const SizedBox(height: 20),
+                      AppFilledButton(
+                        text: 'Sign In',
                         color: tertiaryColor,
-                        onTap: () {
-                          Get.toNamed(signUp);
+                        onPressed: () {
+                          controller.login(
+                            data: LoginData(
+                              mobile: phoneNumberController.text,
+                              password: passwordController.text,
+                            ),
+                            phoneNumber: phoneNumberController.text,
+                          );
                         },
-                        style: kBoldTextStyle,
+                      ),
+                      const SizedBox(height: 60),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const AppRegularText(
+                            text: 'Don\'t have an account?',
+                            color: tertiaryColor,
+                          ),
+                          AppRegularText(
+                            text: ' Register.',
+                            color: tertiaryColor,
+                            onTap: () {
+                              Get.toNamed(signUp);
+                            },
+                            style: kBoldTextStyle,
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
