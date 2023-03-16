@@ -16,7 +16,7 @@ class SignUpController extends GetxController {
   void signUpUser({required RegisterData data, String phoneNumber = ''}) {
     DioRequest.register(data).then((value) {
       if (value != null) {
-        emailError.value = value['email'].value;
+        emailError.value = value['email'].toString();
         mobileError.value = value['mobile'].toString();
       } else {
         emailError.value = '';

@@ -5,11 +5,12 @@ import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
+import 'package:pennywise_app/app/models/user_data.dart';
 
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://bd4b-110-93-82-74.ap.ngrok.io/api',
+      baseUrl: 'https://b84f-110-93-82-74.ap.ngrok.io/api',
     ),
   );
 
@@ -39,13 +40,16 @@ class DioRequest {
 
       if (response.statusCode == 200) {
         print('LOGGED IN');
-        return true;
+        UserData userData = UserData.fromJson(response.data['user']);
+
+        print(userData.id);
+        return userData;
       } else {
-        return false;
+        return null;
       }
     } on DioError catch (e) {
       print(e);
-      return false;
+      return null;
     }
   }
 
@@ -73,7 +77,7 @@ class DioRequest {
     }
   }
 
-  static Future<List<Transactions>> getTransactions(int userId) async {
+  static Future<List<Transactions>> getTransactions(int? userId) async {
     try {
       var response = await _dio.get(
         '/user/dashboard',

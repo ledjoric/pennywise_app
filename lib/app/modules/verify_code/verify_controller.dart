@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/user_controller.dart';
+import 'package:pennywise_app/app/models/user_data.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
 class VerifyController extends GetxController {
@@ -8,6 +10,9 @@ class VerifyController extends GetxController {
   var verificationId = '';
   var phoneNumber = '';
   bool isRegister = false;
+
+  late UserData userData = UserData();
+  var userContoller = Get.put(UserController());
 
   // var otpController = TextEditingController().obs;
 
@@ -38,6 +43,15 @@ class VerifyController extends GetxController {
           Get.offAllNamed(logIn);
         } else {
           Get.offAllNamed(dashBoard);
+          userContoller.saveUserData(userData);
+
+          userContoller.getUserData().then(
+            (value) {
+              if (value != null) {
+                print('MAY LAMAN SYA EYY');
+              }
+            },
+          );
         }
       }
     } on Exception {
