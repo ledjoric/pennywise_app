@@ -24,7 +24,7 @@ class GridViewBuilder extends StatelessWidget {
         // mainAxisSpacing: 1,
         childAspectRatio: childAspectRatio ?? 1,
       ),
-      itemCount: 10,
+      itemCount: 2,
       itemBuilder: (BuildContext context, int index) {
         return listChild;
       },
