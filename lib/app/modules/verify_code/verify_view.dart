@@ -25,60 +25,64 @@ class _VerifyViewState extends State<VerifyView> {
   Widget build(BuildContext context) {
     var controller = Get.put(VerifyController());
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const LogoContainer(),
-            const SizedBox(height: 20),
-            const AppHeaderText(text: 'verification'),
-            const AppHeaderText(
-              text: 'code',
-              style: kBoldHeaderStyle,
-            ),
-            const SizedBox(height: 20),
-            const RedBox(),
-            const SizedBox(height: 30),
-            const AppRegularText(
-              text:
-                  'Verify your account by Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-              color: secondaryColor,
-            ),
-            const SizedBox(height: 30),
-            PInput(
-              controller: otpController,
-            ),
-            const SizedBox(height: 30),
-            AppFilledButton(
-              text: 'Verify',
-              color: tertiaryColor,
-              onPressed: () {
-                // controller.verifyPhoneNumber();
-                controller.verifyOTP(code: otpController.text);
-              },
-            ),
-            const SizedBox(height: 60),
-            Row(
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AppRegularText(
-                  text: 'Resend code in',
-                  color: tertiaryColor,
+                const LogoContainer(),
+                const SizedBox(height: 20),
+                const AppHeaderText(text: 'verification'),
+                const AppHeaderText(
+                  text: 'code',
+                  style: kBoldHeaderStyle,
                 ),
-                AppRegularText(
-                  text: ' 00:00',
+                const SizedBox(height: 20),
+                const RedBox(),
+                const SizedBox(height: 40),
+                const AppRegularText(
+                  text:
+                      'Verify your account by Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                  color: secondaryColor,
+                ),
+                const SizedBox(height: 40),
+                PInput(
+                  controller: otpController,
+                ),
+                const SizedBox(height: 60),
+                AppFilledButton(
+                  text: 'Verify',
                   color: tertiaryColor,
-                  onTap: () {
-                    //placeholder
-                    debugPrint("Register");
+                  onPressed: () {
+                    // controller.verifyPhoneNumber();
+                    controller.verifyOTP(code: otpController.text);
                   },
-                  style: kBoldTextStyle,
+                ),
+                const SizedBox(height: 60),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const AppRegularText(
+                      text: 'Resend code in',
+                      color: tertiaryColor,
+                    ),
+                    AppRegularText(
+                      text: ' 00:00',
+                      color: tertiaryColor,
+                      onTap: () {
+                        //placeholder
+                        debugPrint("Register");
+                      },
+                      style: kBoldTextStyle,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
