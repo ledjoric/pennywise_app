@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
+import 'package:pennywise_app/app/global/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
@@ -46,8 +47,9 @@ class _DashboardViewState extends State<DashboardView> {
               text: 'Your wallet balance is',
               color: secondaryColor,
             ),
-            const AppHeaderText(
-              text: '\$32,290.75',
+            AppHeaderText(
+              text:
+                  '\$${_controller.userController.userData.balance.toString()}',
               style: kBalanceStyle,
             ),
             AppFilledButton(
