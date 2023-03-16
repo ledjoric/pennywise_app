@@ -6,7 +6,7 @@ import 'package:pennywise_app/app/models/transfer_data.dart';
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://a220-136-158-28-59.ap.ngrok.io/api',
+      baseUrl: 'https://bd4b-110-93-82-74.ap.ngrok.io/api',
       receiveDataWhenStatusError: true,
     ),
   );
@@ -60,7 +60,13 @@ class DioRequest {
         return true;
       }
     } on DioError catch (e) {
-      print(e.response);
+      if (e.response!.statusCode == 403) {
+        print('YOU ARE NOT VERIFIED');
+      } else if (e.response!.statusCode == 401) {
+        print('NOT ENOUGH BALANCE');
+      } else {
+        print(e.response);
+      }
       return false;
     }
   }

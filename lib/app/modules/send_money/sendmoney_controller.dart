@@ -23,7 +23,7 @@ class SendMoneyController extends GetxController {
           return AppBottomSheet(
             amount: amountController.text,
             onTap: () => sendMoney(
-              3,
+              1,
               TransferData(
                 receiver: '9223456798',
                 amount: int.parse(amountController.text),
