@@ -21,6 +21,7 @@ class LoginController extends GetxController with WidgetsBindingObserver {
   void onInit() {
     super.onInit();
     WidgetsBinding.instance.addObserver(this);
+    _userController.deleteUserData();
   }
 
   @override

@@ -21,7 +21,9 @@ class TransactionsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => transactions.isEmpty
-        ? const CircularProgressIndicator()
+        ? const SizedBox(
+            height: 100,
+            child: Center(child: Text('NO TRANSACTION PA WALA KA ATA PERA')))
         : GridView.builder(
             shrinkWrap: true,
             physics: physics,

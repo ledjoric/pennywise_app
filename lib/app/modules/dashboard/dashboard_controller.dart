@@ -16,7 +16,7 @@ class DashboardController extends GetxController {
   }
 
   void getTransaction() {
-    DioRequest.getTransactions(3).then((value) {
+    DioRequest.getTransactions(userController.userData.id).then((value) {
       transactionsList.value = value;
     });
   }

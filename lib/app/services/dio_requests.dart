@@ -77,7 +77,7 @@ class DioRequest {
     }
   }
 
-  static Future<List<Transactions>> getTransactions(int userId) async {
+  static Future<List<Transactions>> getTransactions(int? userId) async {
     try {
       var response = await _dio.get(
         '/user/dashboard',
