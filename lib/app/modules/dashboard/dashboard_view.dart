@@ -9,7 +9,6 @@ import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
 import 'package:pennywise_app/app/global/widgets/builders/transactions_builder.dart';
-import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/modules/dashboard/dashboard_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
@@ -66,38 +65,38 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 20),
               AppHeaderText(
-              text: _controller.userController.userData.balance == null
-                  ? '\$0'
-                  : '\$${_controller.userController.userData.balance.toString()}',
-              style: kBalanceStyle,
-            ),
+                text: _controller.userController.userData.balance == null
+                    ? '\$0'
+                    : '\$${_controller.userController.userData.balance.toString()}',
+                style: kBalanceStyle,
+              ),
               const SizedBox(height: 40),
               AppFilledButton(
-              text: 'Send Money',
-              color: tertiaryColor,
-              onPressed: () {
-                Get.toNamed(sendMoney);
-              },
-            ),
+                text: 'Send Money',
+                color: tertiaryColor,
+                onPressed: () {
+                  Get.toNamed(sendMoney);
+                },
+              ),
               const SizedBox(height: 10),
               AppFilledButton(
-              text: 'Cash In',
-              color: transparent,
-              onPressed: () => Get.toNamed(cashIn),
-              style: kButtonStyle2,
-              outline: kOutlinedButton,
-            ),
+                text: 'Cash In',
+                color: transparent,
+                onPressed: () => Get.toNamed(cashIn),
+                style: kButtonStyle2,
+                outline: kOutlinedButton,
+              ),
               const SizedBox(height: 60),
               const AppHeaderText(text: 'quick contacts'),
               //replace with listviewbuilder
               SizedBox(
-              height: 100,
-              child: ConnectionsBuilder(
-                isLoading: _connectionsController.isLoading,
-                scrollDirection: Axis.horizontal,
-                childAspectRatio: 1.25,
-                connections: _connectionsController.connectionsData,
-                connectionLength: _connectionsController.connectionsLength,
+                height: 100,
+                child: ConnectionsBuilder(
+                  isLoading: _connectionsController.isLoading,
+                  scrollDirection: Axis.horizontal,
+                  childAspectRatio: 1.25,
+                  connections: _connectionsController.connectionsData,
+                  connectionLength: _connectionsController.connectionsLength,
                 ),
               ),
               const SizedBox(height: 20),
