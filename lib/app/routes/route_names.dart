@@ -5,3 +5,4 @@ const String dashBoard = '/dashBoard';
 const String sendMoney = '/sendMoney';
 const String sendMoneyAmount = '/sendMoneyAmount';
 const String splashScreen = '/splashScreen';
+const String cashIn = '/cashIn';
