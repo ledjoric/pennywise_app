@@ -8,6 +8,7 @@ import 'package:pennywise_app/app/modules/sign_up/sign_up_view.dart';
 import 'package:pennywise_app/app/modules/splash_screen/splash_screen.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
+import '../modules/profile/edit_profile_view.dart';
 import '../modules/verify_code/verify_view.dart';
 
 class AppPages {
@@ -43,6 +44,10 @@ class AppPages {
     GetPage(
       name: profileView,
       page: () => const ProfileView(),
+    ),
+    GetPage(
+      name: editProfileView,
+      page: () => const EditProfileView(),
     ),
   ];
 }
