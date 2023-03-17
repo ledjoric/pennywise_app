@@ -7,3 +7,4 @@ const String sendMoneyAmount = '/sendMoneyAmount';
 const String splashScreen = '/splashScreen';
 const String profileView = '/profileView';
 const String editProfileView = '/editProfileView';
+const String cashIn = '/cashIn';

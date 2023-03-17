@@ -1,27 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:pennywise_app/app/global/constants/colors.dart';
-import 'package:pennywise_app/app/global/constants/styles.dart';
-import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
-import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
-import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
-import 'package:pennywise_app/app/global/widgets/bottomsheet_users.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 
-class AppBottomSheet extends StatelessWidget {
-  final String senderName;
-  final String receiverName;
-  final String senderMobile;
-  final String receiverMobile;
-  final String amount;
-  final Function onTap;
-  const AppBottomSheet({
-    Key? key,
-    required this.onTap,
-    required this.amount,
-    required this.senderName,
-    required this.receiverName,
-    required this.senderMobile,
-    required this.receiverMobile,
-  }) : super(key: key);
+import '../constants/colors.dart';
+import '../constants/styles.dart';
+import 'app_filledbutton.dart';
+import 'app_headertext.dart';
+import 'app_regulartext.dart';
+
+class CashInBottomSheet extends StatelessWidget {
+  const CashInBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +18,7 @@ class AppBottomSheet extends StatelessWidget {
         borderRadius: kBottomSheetRadius,
         color: primaryColor,
       ),
-      height: 500,
+      height: 300,
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(
@@ -39,28 +27,14 @@ class AppBottomSheet extends StatelessWidget {
           children: [
             const AppHeaderText(text: 'confirm transfer?'),
             const SizedBox(height: 20),
-            AppHeaderText(
-              text: '\$$amount',
+            const AppHeaderText(
+              //add actual amount
+              text: '\$amount',
               style: kBoldHeaderStyle,
-            ),
-            const SizedBox(height: 20),
-            //subject to be replaced
-            // ConnectionsBuilder(
-            //   listChild: ContactCard(
-            //     onTap: () {},
-            //   ),
-            //   physics: const NeverScrollableScrollPhysics(),
-            //   childAspectRatio: 6,
-            // ),
-            TransactionUsers(
-              sender: senderName,
-              senderMobile: senderMobile,
-              receiver: receiverName,
-              receiverMobile: receiverMobile,
             ),
             const SizedBox(height: 60),
             AppFilledButton(
-              text: 'Send Money',
+              text: 'Cash In',
               color: tertiaryColor,
               onPressed: () {
                 showDialog(
@@ -81,10 +55,10 @@ class AppBottomSheet extends StatelessWidget {
                             color: tertiaryColor,
                           ),
                           SizedBox(height: 20),
-                          AppHeaderText(text: 'Sent!'),
+                          AppHeaderText(text: 'Success!'),
                           SizedBox(height: 20),
                           AppRegularText(
-                            text: 'Transaction successful.',
+                            text: 'Cash-in transaction completed.',
                             color: secondaryColor,
                           ),
                         ],

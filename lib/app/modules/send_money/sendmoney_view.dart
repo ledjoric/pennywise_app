@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/connections_controller.dart';
+import 'package:pennywise_app/app/global/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
-import 'package:pennywise_app/app/global/widgets/builders/transactions_builder.dart';
-import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
-import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
-import 'package:pennywise_app/app/routes/route_names.dart';
+import 'package:pennywise_app/app/services/dio_requests.dart';
 
 import '../../global/constants/colors.dart';
 import '../../global/constants/styles.dart';
@@ -22,10 +21,26 @@ class SendMoneyView extends StatefulWidget {
 
 class _SendMoneyViewState extends State<SendMoneyView> {
   final searchController = TextEditingController();
+  final _controller = Get.put(SendMoneyController());
+  final _connectionsController = Get.put(ConnectionsController());
+  final userController = Get.put(UserController());
+
+  @override
+  void initState() {
+    // final tasksData = Provider.of<ConnectionsProvider>(context);
+    _connectionsController.isLoading.value = true;
+    DioRequest.getConnections(userController.userData.id).then((value) {
+      _connectionsController.connectionsLength.value = value.length;
+      setState(() {
+        _connectionsController.connectionsData = value;
+      });
+      _connectionsController.isLoading.value = false;
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // var controller = Get.put(SendMoneyController());
     return Scaffold(
       appBar: AppBar(
         title: const AppHeaderText(
@@ -47,28 +62,23 @@ class _SendMoneyViewState extends State<SendMoneyView> {
                   const RedBox(),
                   const SizedBox(height: 40),
                   const AppHeaderText(
-                    text: 'select a recipient',
+                    text: 'recipient\'s number',
                   ),
                   const SizedBox(height: 20),
-                  AppTextFormField(
-                    hint: 'Find a contact...',
-                    icon: Icons.phone_android_rounded,
-                    controller: searchController,
-                    validator: (value) => null,
-                    isLimited: false,
-                  ),
-                  const SizedBox(height: 40),
-                  const AppHeaderText(text: 'recent connections'),
-                  const SizedBox(height: 10),
-                  const SizedBox(
-                    height: 100,
-                    child: ConnectionsBuilder(
-                      listChild: ContactBubble(color: tertiaryColor),
-                      scrollDirection: Axis.horizontal,
-                      childAspectRatio: 1.25,
+                  Form(
+                    key: _controller.formKey,
+                    child: AppTextFormField(
+                      onChanged: (value) => _controller.recipientExist(value),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      hint: 'Enter recipient\'s number...',
+                      icon: Icons.phone_android_rounded,
+                      controller: searchController,
+                      validator: (value) =>
+                          _controller.recipientValidate(value),
+                      isLimited: false,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 40),
                 ],
               ),
             ),
@@ -77,17 +87,15 @@ class _SendMoneyViewState extends State<SendMoneyView> {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
-                  child: AppHeaderText(text: 'contacts list'),
+                  child: AppHeaderText(text: 'connections list'),
                 ),
                 const SizedBox(height: 10),
                 ConnectionsBuilder(
-                  listChild: ContactCard(
-                    onTap: () {
-                      Get.toNamed(sendMoneyAmount);
-                    },
-                  ),
+                  isLoading: _connectionsController.isLoading,
                   physics: const NeverScrollableScrollPhysics(),
                   childAspectRatio: 5.5,
+                  connections: _connectionsController.connectionsData,
+                  connectionLength: _connectionsController.connectionsLength,
                 ),
               ],
             )
