@@ -6,13 +6,12 @@ import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
-import 'package:pennywise_app/app/providers/connections_provider.dart';
 import 'package:provider/provider.dart';
 
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://0559-136-158-28-59.ap.ngrok.io/api',
+      baseUrl: 'https://ad77-110-93-82-74.ap.ngrok.io/api',
     ),
   );
 
@@ -140,8 +139,8 @@ class DioRequest {
         print(connectionsJson.length);
         return connectionsJson;
       }
-    } on DioError {
-      print('NO CONNECTIONS');
+    } on DioError catch (e) {
+      print(e);
       return null;
     }
   }

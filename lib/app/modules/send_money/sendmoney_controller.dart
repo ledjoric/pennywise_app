@@ -12,14 +12,14 @@ import 'package:pennywise_app/app/services/dio_requests.dart';
 
 class SendMoneyController extends GetxController {
   var amount = 0;
-  var receiver = '';
+  var receiver = 0;
   var exist = false;
 
   final amountController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   var receiverData = UserData();
 
-  var connectionsData;
+  // var connectionsData;
 
   var userController = Get.put(UserController());
 
@@ -33,7 +33,9 @@ class SendMoneyController extends GetxController {
         builder: (context) {
           return AppBottomSheet(
             senderName: userController.userData.firstName ?? 'ME',
+            senderMobile: userController.userData.mobile ?? '9123456789',
             receiverName: receiverData.firstName ?? 'HE/SHE',
+            receiverMobile: receiverData.mobile ?? '9987654321',
             amount: amountController.text,
             onTap: () => sendMoney(
               userController.userData.id,
@@ -92,7 +94,8 @@ class SendMoneyController extends GetxController {
       return;
     }
 
-    if (await DioRequest.getReceiver(1, int.parse(value))) {
+    if (await DioRequest.getReceiver(
+        userController.userData.id, int.parse(value))) {
       exist = true;
       if (formKey.currentState!.validate()) {
         Get.toNamed(sendMoneyAmount);
@@ -101,5 +104,10 @@ class SendMoneyController extends GetxController {
       exist = false;
       if (formKey.currentState!.validate()) {}
     }
+  }
+
+  void getReceiverData(dynamic receiver) {
+    receiverData = UserData.fromJson(receiver);
+    Get.toNamed(sendMoneyAmount);
   }
 }

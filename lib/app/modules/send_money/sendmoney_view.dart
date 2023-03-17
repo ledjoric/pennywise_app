@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/connections_controller.dart';
+import 'package:pennywise_app/app/global/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
@@ -22,16 +23,18 @@ class _SendMoneyViewState extends State<SendMoneyView> {
   final searchController = TextEditingController();
   final _controller = Get.put(SendMoneyController());
   final _connectionsController = Get.put(ConnectionsController());
+  final userController = Get.put(UserController());
 
   @override
   void initState() {
     // final tasksData = Provider.of<ConnectionsProvider>(context);
-
-    DioRequest.getConnections(1).then((value) {
+    _connectionsController.isLoading.value = true;
+    DioRequest.getConnections(userController.userData.id).then((value) {
       _connectionsController.connectionsLength.value = value.length;
       setState(() {
-        _controller.connectionsData = value;
+        _connectionsController.connectionsData = value;
       });
+      _connectionsController.isLoading.value = false;
     });
     super.initState();
   }
@@ -84,15 +87,15 @@ class _SendMoneyViewState extends State<SendMoneyView> {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
-                  child: AppHeaderText(text: 'contacts list'),
+                  child: AppHeaderText(text: 'connections list'),
                 ),
                 const SizedBox(height: 10),
                 ConnectionsBuilder(
+                  isLoading: _connectionsController.isLoading,
                   physics: const NeverScrollableScrollPhysics(),
                   childAspectRatio: 5.5,
-                  connections: _controller.connectionsData,
-                  connectionLength:
-                      _connectionsController.connectionsLength.value,
+                  connections: _connectionsController.connectionsData,
+                  connectionLength: _connectionsController.connectionsLength,
                 ),
               ],
             )

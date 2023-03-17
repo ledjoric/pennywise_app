@@ -9,11 +9,15 @@ import 'app_regulartext.dart';
 class TransactionUsers extends StatelessWidget {
   final String sender;
   final String receiver;
+  final String senderMobile;
+  final String receiverMobile;
 
   const TransactionUsers({
     Key? key,
     required this.sender,
     required this.receiver,
+    required this.senderMobile,
+    required this.receiverMobile,
   }) : super(key: key);
 
   @override
@@ -33,8 +37,12 @@ class TransactionUsers extends StatelessWidget {
             color: tertiaryColor,
             style: kBoldTextStyle,
           ),
-          subtitle: const AppRegularText(
-            text: 'Sender',
+          subtitle: AppRegularText(
+            text: '+63$senderMobile',
+            color: greyDark,
+          ),
+          trailing: const AppRegularText(
+            text: 'Sender      ',
             color: greyDark,
           ),
         ),
@@ -52,8 +60,12 @@ class TransactionUsers extends StatelessWidget {
             color: tertiaryColor,
             style: kBoldTextStyle,
           ),
-          subtitle: const AppRegularText(
-            text: 'Receiver',
+          subtitle: AppRegularText(
+            text: '+63$receiverMobile',
+            color: greyDark,
+          ),
+          trailing: const AppRegularText(
+            text: 'Receiver      ',
             color: greyDark,
           ),
         ),
