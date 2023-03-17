@@ -6,7 +6,6 @@ import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
-import 'package:provider/provider.dart';
 
 class DioRequest {
   static final _dio = Dio(
