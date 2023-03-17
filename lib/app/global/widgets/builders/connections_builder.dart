@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
+import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';

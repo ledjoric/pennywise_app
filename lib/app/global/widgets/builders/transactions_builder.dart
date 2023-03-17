@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/constants/colors.dart';
+import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/transaction_card.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 
@@ -29,7 +31,10 @@ class TransactionsBuilder extends StatelessWidget {
               ? const SizedBox(
                   height: 100,
                   child: Center(
-                    child: Text('NO TRANSACTION PA WALA KA ATA PERA'),
+                    child: AppRegularText(
+                      text: 'No transactions yet. Send money or cash in!',
+                      color: secondaryColor,
+                    ),
                   ),
                 )
               : GridView.builder(
