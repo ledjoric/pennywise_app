@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pennywise_app/app/global/connections_controller.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/connections_controller.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
 import 'package:pennywise_app/app/global/widgets/builders/transactions_builder.dart';
-import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/modules/dashboard/dashboard_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
@@ -25,11 +25,12 @@ class DashboardView extends StatefulWidget {
 class _DashboardViewState extends State<DashboardView> {
   final _controller = Get.put(DashboardController());
   final _connectionsController = Get.put(ConnectionsController());
+  final _userController = Get.put(UserController());
 
   @override
   void initState() {
     _connectionsController.isLoading.value = true;
-    DioRequest.getConnections(6).then((value) {
+    DioRequest.getConnections(_userController.userData.id).then((value) {
       _connectionsController.connectionsLength.value = value.length;
       setState(() {
         _connectionsController.connectionsData = value;
@@ -77,7 +78,7 @@ class _DashboardViewState extends State<DashboardView> {
             AppFilledButton(
               text: 'Cash In',
               color: transparent,
-              onPressed: () {},
+              onPressed: () => Get.toNamed(cashIn),
               style: kButtonStyle2,
               outline: kOutlinedButton,
             ),
@@ -89,7 +90,7 @@ class _DashboardViewState extends State<DashboardView> {
                 isLoading: _connectionsController.isLoading,
                 scrollDirection: Axis.horizontal,
                 childAspectRatio: 1.25,
-                connections: null,
+                connections: _connectionsController.connectionsData,
                 connectionLength: _connectionsController.connectionsLength,
               ),
             ),

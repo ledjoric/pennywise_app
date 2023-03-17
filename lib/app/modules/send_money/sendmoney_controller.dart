@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/strings.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
-import 'package:pennywise_app/app/global/user_controller.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_bottomsheet.dart';
+import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
+import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
@@ -37,12 +39,13 @@ class SendMoneyController extends GetxController {
             receiverName: receiverData.firstName ?? 'HE/SHE',
             receiverMobile: receiverData.mobile ?? '9987654321',
             amount: amountController.text,
-            onTap: () => sendMoney(
+            onPressed: () => sendMoney(
               userController.userData.id,
               TransferData(
                 receiver: userController.userData.mobile,
                 amount: int.parse(amountController.text),
               ),
+              context,
             ),
           );
         },
@@ -60,22 +63,57 @@ class SendMoneyController extends GetxController {
     }
   }
 
-  void sendMoney(int? userId, TransferData data) {
+  void sendMoney(int? userId, TransferData data, BuildContext context) {
     DioRequest.transfer(userId, data).then((value) {
       if (value) {
-        Get.snackbar(
-          'NA-TRANSFER NA!!!',
-          'AWTS BAWAS NA PERA MO.',
-          colorText: secondaryColor,
-          backgroundColor: Colors.grey[300],
-          // leftBarIndicatorColor: tertiaryColor,
-          duration: const Duration(seconds: 2),
-          borderRadius: 20,
-        );
+        // Get.snackbar(
+        //   'NA-TRANSFER NA!!!',
+        //   'AWTS BAWAS NA PERA MO.',
+        //   colorText: secondaryColor,
+        //   backgroundColor: Colors.grey[300],
+        //   // leftBarIndicatorColor: tertiaryColor,
+        //   duration: const Duration(seconds: 2),
+        //   borderRadius: 20,
+        // );
+        showConfirmedDialog(context);
       } else {
         print('TRANSFER FAILED');
       }
     });
+  }
+
+  void showConfirmedDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: kRadius,
+        ),
+        content: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(
+                Icons.check_circle_outline_rounded,
+                size: 80,
+                color: tertiaryColor,
+              ),
+              SizedBox(height: 20),
+              AppHeaderText(text: 'Sent!'),
+              SizedBox(height: 20),
+              AppRegularText(
+                text: 'Transaction successful.',
+                color: secondaryColor,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ).then(
+      (value) => Get.offAllNamed(dashBoard),
+    );
   }
 
   String? recipientValidate(String? value) {

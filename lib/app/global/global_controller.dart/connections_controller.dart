@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/services/dio_requests.dart';
 
 class ConnectionsController extends GetxController {
   // var connectionsData = dynamic.;

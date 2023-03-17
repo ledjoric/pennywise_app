@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/constants/colors.dart';
+import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/contact_card.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
@@ -26,30 +28,38 @@ class ConnectionsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(SendMoneyController());
-    return Obx(() => isLoading.value
-        ? const Center(child: CircularProgressIndicator())
-        : connectionLength.value == 0
-            ? const Center(
-                child: Text('WALA KANG CONNECTIONS'),
-              )
-            : GridView.builder(
-                shrinkWrap: true,
-                physics: physics,
-                scrollDirection: scrollDirection ?? Axis.vertical,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  // mainAxisSpacing: 1,
-                  childAspectRatio: childAspectRatio ?? 1,
+    return Obx(
+      () => isLoading.value
+          ? const Center(child: CircularProgressIndicator())
+          : connectionLength.value == 0
+              ? const Center(
+                  child: Text('WALA KANG CONNECTIONS'),
+                )
+              : GridView.builder(
+                  shrinkWrap: true,
+                  physics: physics,
+                  scrollDirection: scrollDirection ?? Axis.vertical,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    // mainAxisSpacing: 1,
+                    childAspectRatio: childAspectRatio ?? 1,
+                  ),
+                  itemCount: connectionLength.value,
+                  itemBuilder: (BuildContext context, int index) {
+                    return scrollDirection == Axis.vertical
+                        ? ContactCard(
+                            onTap: () => controller
+                                .getReceiverData(connections[index][0]),
+                            name: connections[index][0]['firstName'],
+                            mobile: connections[index][0]['mobile'],
+                          )
+                        : ContactBubble(
+                            onTap: () => controller
+                                .getReceiverData(connections[index][0]),
+                            color: tertiaryColor,
+                            name: connections[index][0]['firstName']);
+                  },
                 ),
-                itemCount: connectionLength.value,
-                itemBuilder: (BuildContext context, int index) {
-                  return ContactCard(
-                    onTap: () =>
-                        controller.getReceiverData(connections[index][0]),
-                    name: connections[index][0]['firstName'],
-                    mobile: connections[index][0]['mobile'],
-                  );
-                },
-              ));
+    );
   }
 }

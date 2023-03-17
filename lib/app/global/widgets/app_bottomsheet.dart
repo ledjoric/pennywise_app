@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/bottomsheet_users.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 
 class AppBottomSheet extends StatelessWidget {
   final String senderName;
@@ -12,10 +14,10 @@ class AppBottomSheet extends StatelessWidget {
   final String senderMobile;
   final String receiverMobile;
   final String amount;
-  final Function onTap;
+  final Function onPressed;
   const AppBottomSheet({
     Key? key,
-    required this.onTap,
+    required this.onPressed,
     required this.amount,
     required this.senderName,
     required this.receiverName,
@@ -62,37 +64,7 @@ class AppBottomSheet extends StatelessWidget {
             AppFilledButton(
               text: 'Send Money',
               color: tertiaryColor,
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: kRadius,
-                    ),
-                    content: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.check_circle_outline_rounded,
-                            size: 80,
-                            color: tertiaryColor,
-                          ),
-                          SizedBox(height: 20),
-                          AppHeaderText(text: 'Sent!'),
-                          SizedBox(height: 20),
-                          AppRegularText(
-                            text: 'Transaction successful.',
-                            color: secondaryColor,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
+              onPressed: () {},
             ),
           ],
         ),

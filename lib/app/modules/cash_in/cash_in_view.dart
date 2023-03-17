@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/widgets/amount_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/cashin_bottomsheet.dart';
+import 'package:pennywise_app/app/modules/cash_in/cash_in_controller.dart';
 
 import '../../global/constants/colors.dart';
 import '../../global/constants/styles.dart';
 import '../../global/widgets/app_filledbutton.dart';
 import '../../global/widgets/app_headertext.dart';
-import 'cash_in_controller.dart';
 
 class CashInView extends StatefulWidget {
   const CashInView({super.key});
@@ -17,8 +17,9 @@ class CashInView extends StatefulWidget {
 }
 
 class _CashInViewState extends State<CashInView> {
-  final _controller = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+
+  final _controller = Get.put(CashInController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class _CashInViewState extends State<CashInView> {
                 child: Form(
                   key: _formkey,
                   child: AmountTextFormField(
-                    controller: _controller,
+                    controller: _controller.amountController,
                   ),
                 ),
               ),
@@ -54,14 +55,7 @@ class _CashInViewState extends State<CashInView> {
                 text: 'Continue',
                 color: tertiaryColor,
                 onPressed: () {
-                  showModalBottomSheet(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: kBottomSheetRadius,
-                    ),
-                    context: context,
-                    builder: (BuildContext context) =>
-                        const CashInBottomSheet(),
-                  );
+                  _controller.confirmTransfer(context);
                 },
               ),
             ],

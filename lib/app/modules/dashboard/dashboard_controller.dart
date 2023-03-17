@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:pennywise_app/app/global/user_controller.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
 

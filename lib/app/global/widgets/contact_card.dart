@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
-import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 
-import '../constants/dimensions.dart';
 import '../constants/styles.dart';
 
 class ContactCard extends StatelessWidget {
@@ -24,9 +22,17 @@ class ContactCard extends StatelessWidget {
         left: 20,
       ),
       onTap: onTap,
-      leading: const CircleAvatar(
+      leading: CircleAvatar(
         backgroundColor: tertiaryColor,
         radius: 32,
+        child: Text(
+          name.isNotEmpty ? name[0].toUpperCase() : 'A',
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
       ),
       title: AppRegularText(
         text: name,
