@@ -4,8 +4,10 @@ import 'package:pennywise_app/app/modules/login/login_view.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_amount_view.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_view.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_view.dart';
+import 'package:pennywise_app/app/modules/splash_screen/splash_screen.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
+import '../modules/cash_in/cash_in_view.dart';
 import '../modules/verify_code/verify_view.dart';
 
 class AppPages {
@@ -33,6 +35,14 @@ class AppPages {
     GetPage(
       name: sendMoneyAmount,
       page: () => const SMAmountView(),
+    ),
+    GetPage(
+      name: splashScreen,
+      page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: cashIn,
+      page: () => const CashInView(),
     ),
   ];
 }
