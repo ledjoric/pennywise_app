@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/connections_controller.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/constants/styles.dart';
-import 'package:pennywise_app/app/global/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
 import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
@@ -10,7 +10,6 @@ import 'package:pennywise_app/app/global/widgets/builders/connections_builder.da
 import 'package:pennywise_app/app/global/widgets/builders/transactions_builder.dart';
 import 'package:pennywise_app/app/global/widgets/contact_bubble.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
-import 'package:pennywise_app/app/global/widgets/transaction_card.dart';
 import 'package:pennywise_app/app/modules/dashboard/dashboard_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
@@ -25,6 +24,21 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
   final _controller = Get.put(DashboardController());
+  final _connectionsController = Get.put(ConnectionsController());
+
+  @override
+  void initState() {
+    _connectionsController.isLoading.value = true;
+    DioRequest.getConnections(6).then((value) {
+      _connectionsController.connectionsLength.value = value.length;
+      setState(() {
+        _connectionsController.connectionsData = value;
+      });
+      _connectionsController.isLoading.value = false;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,8 +62,9 @@ class _DashboardViewState extends State<DashboardView> {
               color: secondaryColor,
             ),
             AppHeaderText(
-              text:
-                  '\$${_controller.userController.userData.balance.toString()}',
+              text: _controller.userController.userData.balance == null
+                  ? '\$0'
+                  : '\$${_controller.userController.userData.balance.toString()}',
               style: kBalanceStyle,
             ),
             AppFilledButton(
@@ -68,16 +83,19 @@ class _DashboardViewState extends State<DashboardView> {
             ),
             const AppHeaderText(text: 'quick contacts'),
             //replace with listviewbuilder
-            const SizedBox(
+            SizedBox(
               height: 100,
               child: ConnectionsBuilder(
-                listChild: ContactBubble(color: tertiaryColor),
+                isLoading: _connectionsController.isLoading,
                 scrollDirection: Axis.horizontal,
                 childAspectRatio: 1.25,
+                connections: null,
+                connectionLength: _connectionsController.connectionsLength,
               ),
             ),
             const AppHeaderText(text: 'transactions'),
             TransactionsBuilder(
+              isLoading: _controller.isLoading,
               physics: const NeverScrollableScrollPhysics(),
               childAspectRatio: 5.5,
               transactions: _controller.transactionsList,

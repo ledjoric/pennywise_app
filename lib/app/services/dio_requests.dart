@@ -1,16 +1,17 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
+import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
+import 'package:provider/provider.dart';
 
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://b84f-110-93-82-74.ap.ngrok.io/api',
+      baseUrl: 'https://ad77-110-93-82-74.ap.ngrok.io/api',
     ),
   );
 
@@ -53,7 +54,7 @@ class DioRequest {
     }
   }
 
-  static Future transfer(int userId, TransferData data) async {
+  static Future transfer(int? userId, TransferData data) async {
     try {
       var response = await _dio.post(
         '/user/transfer',
@@ -101,5 +102,46 @@ class DioRequest {
       return [];
     }
     return [];
+  }
+
+  static Future<bool> getReceiver(int? userId, int receiver) async {
+    var sendMoneyController = Get.put(SendMoneyController());
+    try {
+      var response = await _dio.get(
+        '/user/transfer/receiver',
+        queryParameters: {'user': userId, 'receiver': receiver},
+      );
+
+      if (response.statusCode == 200) {
+        print('RECEIVER EXISTS');
+        var responseData = response.data['receiver'];
+
+        sendMoneyController.receiverData = UserData.fromJson(responseData);
+        return true;
+      }
+      return false;
+    } on DioError {
+      print('NUMBER IS NOT REGISTERED');
+      return false;
+    }
+  }
+
+  static Future getConnections(int? userId) async {
+    try {
+      var response = await _dio.get(
+        '/user/dashboard/connections',
+        queryParameters: {'user': userId},
+      );
+
+      if (response.statusCode == 200) {
+        print('CONNECTIONS');
+        var connectionsJson = response.data['connections'];
+        print(connectionsJson.length);
+        return connectionsJson;
+      }
+    } on DioError catch (e) {
+      print(e);
+      return null;
+    }
   }
 }

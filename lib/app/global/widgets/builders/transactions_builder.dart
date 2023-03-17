@@ -9,6 +9,7 @@ class TransactionsBuilder extends StatelessWidget {
   final double? childAspectRatio;
   final ScrollPhysics? physics;
   final RxList<Transactions> transactions;
+  final RxBool isLoading;
   const TransactionsBuilder({
     super.key,
     // required this.listChild,
@@ -16,30 +17,38 @@ class TransactionsBuilder extends StatelessWidget {
     this.childAspectRatio,
     this.physics,
     required this.transactions,
+    required this.isLoading,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => transactions.isEmpty
-        ? const SizedBox(
-            height: 100,
-            child: Center(child: Text('NO TRANSACTION PA WALA KA ATA PERA')))
-        : GridView.builder(
-            shrinkWrap: true,
-            physics: physics,
-            scrollDirection: scrollDirection ?? Axis.vertical,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              // mainAxisSpacing: 1,
-              childAspectRatio: childAspectRatio ?? 1,
-            ),
-            itemCount: transactions.length,
-            itemBuilder: (BuildContext context, int index) {
-              return TransactionCard(
-                  type: 'type',
-                  date: transactions[index].transactionDate,
-                  amount: transactions[index].amount.toString());
-            },
-          ));
+    return Obx(
+      () => isLoading.value
+          ? const Center(child: CircularProgressIndicator())
+          : transactions.isEmpty
+              ? const SizedBox(
+                  height: 100,
+                  child: Center(
+                    child: Text('NO TRANSACTION PA WALA KA ATA PERA'),
+                  ),
+                )
+              : GridView.builder(
+                  shrinkWrap: true,
+                  physics: physics,
+                  scrollDirection: scrollDirection ?? Axis.vertical,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    // mainAxisSpacing: 1,
+                    childAspectRatio: childAspectRatio ?? 1,
+                  ),
+                  itemCount: transactions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return TransactionCard(
+                        type: 'type',
+                        date: transactions[index].transactionDate,
+                        amount: transactions[index].amount.toString());
+                  },
+                ),
+    );
   }
 }

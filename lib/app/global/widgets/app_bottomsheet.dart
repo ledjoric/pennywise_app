@@ -7,12 +7,20 @@ import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/bottomsheet_users.dart';
 
 class AppBottomSheet extends StatelessWidget {
+  final String senderName;
+  final String receiverName;
+  final String senderMobile;
+  final String receiverMobile;
   final String amount;
   final Function onTap;
   const AppBottomSheet({
     Key? key,
     required this.onTap,
     required this.amount,
+    required this.senderName,
+    required this.receiverName,
+    required this.senderMobile,
+    required this.receiverMobile,
   }) : super(key: key);
 
   @override
@@ -36,9 +44,19 @@ class AppBottomSheet extends StatelessWidget {
               style: kBoldHeaderStyle,
             ),
             const SizedBox(height: 20),
-            const TransactionUsers(
-              sender: 'BEN',
-              receiver: 'JUAN',
+            //subject to be replaced
+            // ConnectionsBuilder(
+            //   listChild: ContactCard(
+            //     onTap: () {},
+            //   ),
+            //   physics: const NeverScrollableScrollPhysics(),
+            //   childAspectRatio: 6,
+            // ),
+            TransactionUsers(
+              sender: senderName,
+              senderMobile: senderMobile,
+              receiver: receiverName,
+              receiverMobile: receiverMobile,
             ),
             const SizedBox(height: 60),
             AppFilledButton(
