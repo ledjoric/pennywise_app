@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pennywise_app/app/global/connections_controller.dart';
-import 'package:pennywise_app/app/global/user_controller.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/connections_controller.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/global/widgets/app_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/builders/connections_builder.dart';
 import 'package:pennywise_app/app/global/widgets/divider.dart';
@@ -27,15 +27,14 @@ class _SendMoneyViewState extends State<SendMoneyView> {
 
   @override
   void initState() {
-    // final tasksData = Provider.of<ConnectionsProvider>(context);
-    _connectionsController.isLoading.value = true;
-    DioRequest.getConnections(userController.userData.id).then((value) {
-      _connectionsController.connectionsLength.value = value.length;
-      setState(() {
-        _connectionsController.connectionsData = value;
-      });
-      _connectionsController.isLoading.value = false;
-    });
+    // _connectionsController.isLoading.value = true;
+    // DioRequest.getConnections(1).then((value) {
+    //   _connectionsController.connectionsLength.value = value.length;
+    //   setState(() {
+    //     _connectionsController.connectionsData = value;
+    //   });
+    //   _connectionsController.isLoading.value = false;
+    // });
     super.initState();
   }
 
@@ -91,6 +90,7 @@ class _SendMoneyViewState extends State<SendMoneyView> {
                 ),
                 const SizedBox(height: 10),
                 ConnectionsBuilder(
+                  scrollDirection: Axis.vertical,
                   isLoading: _connectionsController.isLoading,
                   physics: const NeverScrollableScrollPhysics(),
                   childAspectRatio: 5.5,

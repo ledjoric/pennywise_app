@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 
 import '../constants/colors.dart';
 import '../constants/styles.dart';
@@ -9,7 +9,11 @@ import 'app_headertext.dart';
 import 'app_regulartext.dart';
 
 class CashInBottomSheet extends StatelessWidget {
-  const CashInBottomSheet({super.key});
+  final String amount;
+  const CashInBottomSheet({
+    super.key,
+    required this.amount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +31,9 @@ class CashInBottomSheet extends StatelessWidget {
           children: [
             const AppHeaderText(text: 'confirm transfer?'),
             const SizedBox(height: 20),
-            const AppHeaderText(
+            AppHeaderText(
               //add actual amount
-              text: '\$amount',
+              text: '\$$amount',
               style: kBoldHeaderStyle,
             ),
             const SizedBox(height: 60),
@@ -38,33 +42,34 @@ class CashInBottomSheet extends StatelessWidget {
               color: tertiaryColor,
               onPressed: () {
                 showDialog(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: kRadius,
-                    ),
-                    content: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.check_circle_outline_rounded,
-                            size: 80,
-                            color: tertiaryColor,
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: kRadius,
                           ),
-                          SizedBox(height: 20),
-                          AppHeaderText(text: 'Success!'),
-                          SizedBox(height: 20),
-                          AppRegularText(
-                            text: 'Cash-in transaction completed.',
-                            color: secondaryColor,
+                          content: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Icon(
+                                  Icons.check_circle_outline_rounded,
+                                  size: 80,
+                                  color: tertiaryColor,
+                                ),
+                                SizedBox(height: 20),
+                                AppHeaderText(text: 'Success!'),
+                                SizedBox(height: 20),
+                                AppRegularText(
+                                  text: 'Cash-in transaction completed.',
+                                  color: secondaryColor,
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
+                        )).then(
+                  (value) => Get.offAllNamed(dashBoard),
                 );
               },
             ),

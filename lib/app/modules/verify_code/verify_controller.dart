@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:pennywise_app/app/global/user_controller.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
