@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/modules/dashboard/dashboard_view.dart';
 import 'package:pennywise_app/app/modules/login/login_view.dart';
+import 'package:pennywise_app/app/modules/profile/profile_view.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_amount_view.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_view.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_view.dart';
@@ -38,6 +39,10 @@ class AppPages {
     GetPage(
       name: splashScreen,
       page: () => const SplashScreen(),
+    ),
+    GetPage(
+      name: profileView,
+      page: () => const ProfileView(),
     ),
   ];
 }
