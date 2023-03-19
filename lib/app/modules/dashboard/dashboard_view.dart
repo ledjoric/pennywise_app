@@ -28,14 +28,17 @@ class _DashboardViewState extends State<DashboardView> {
 
   @override
   void initState() {
-    _connectionsController.isLoading.value = true;
-    DioRequest.getConnections(_userController.userData.id).then((value) {
-      _connectionsController.connectionsLength.value = value.length;
-      setState(() {
-        _connectionsController.connectionsData = value;
+    _userController.getUserData().then((value) {
+      _connectionsController.isLoading.value = true;
+      DioRequest.getConnections(_userController.userData.id).then((value) {
+        _connectionsController.connectionsLength.value = value.length;
+        setState(() {
+          _connectionsController.connectionsData = value;
+        });
+        _connectionsController.isLoading.value = false;
       });
-      _connectionsController.isLoading.value = false;
     });
+
     super.initState();
   }
 
@@ -65,9 +68,9 @@ class _DashboardViewState extends State<DashboardView> {
               ),
               const SizedBox(height: 20),
               AppHeaderText(
-                text: _controller.userController.userData.balance == null
+                text: _userController.userData.balance == null
                     ? '\$0'
-                    : '\$${_controller.userController.userData.balance.toString()}',
+                    : '\$${_userController.userData.balance.toString()}',
                 style: kBalanceStyle,
               ),
               const SizedBox(height: 40),

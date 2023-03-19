@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
@@ -39,14 +40,12 @@ class DioRequest {
       );
 
       if (response.statusCode == 200) {
+        var userController = Get.put(UserController());
         print('LOGGED IN');
         UserData userData = UserData.fromJson(response.data['user']);
-
-        print(userData.id);
         return userData;
-      } else {
-        return null;
       }
+      return null;
     } on DioError catch (e) {
       print(e);
       return null;

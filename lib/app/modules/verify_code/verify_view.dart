@@ -58,7 +58,9 @@ class _VerifyViewState extends State<VerifyView> {
                   color: tertiaryColor,
                   onPressed: () {
                     // controller.verifyPhoneNumber();
-                    controller.verifyOTP(code: otpController.text);
+                    controller.verifyOTP(
+                      code: otpController.text,
+                    );
                   },
                 ),
                 const SizedBox(height: 60),

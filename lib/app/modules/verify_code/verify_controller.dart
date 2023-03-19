@@ -11,7 +11,7 @@ class VerifyController extends GetxController {
   var phoneNumber = '';
   bool isRegister = false;
 
-  late UserData userData = UserData();
+  UserData userData = UserData();
   var userContoller = Get.put(UserController());
 
   // var otpController = TextEditingController().obs;
@@ -42,13 +42,12 @@ class VerifyController extends GetxController {
           isRegister = false;
           Get.offAllNamed(logIn);
         } else {
-          Get.offAllNamed(dashBoard);
           userContoller.saveUserData(userData);
 
           userContoller.getUserData().then(
             (value) {
               if (value != null) {
-                print('MAY LAMAN SYA EYY');
+                Get.offAllNamed(dashBoard);
               }
             },
           );

@@ -9,19 +9,19 @@ class DashboardController extends GetxController {
 
   var userController = Get.put(UserController());
 
-  @override
-  void onInit() {
-    userController.getUserData();
-    getTransaction();
-
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   // getTransaction();
+  //   super.onInit();
+  // }
 
   void getTransaction() {
     isLoading.value = true;
-    DioRequest.getTransactions(userController.userData.id).then((value) {
-      transactionsList.value = value;
-      isLoading.value = false;
+    userController.getUserData().then((value) {
+      DioRequest.getTransactions(userController.userData.id).then((value) {
+        transactionsList.value = value;
+        isLoading.value = false;
+      });
     });
   }
 }
