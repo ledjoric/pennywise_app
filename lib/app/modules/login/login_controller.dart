@@ -16,7 +16,7 @@ class LoginController extends GetxController with WidgetsBindingObserver {
   void onInit() {
     super.onInit();
     WidgetsBinding.instance.addObserver(this);
-    _userController.deleteUserData();
+    // _userController.deleteUserData();
   }
 
   @override
@@ -29,17 +29,27 @@ class LoginController extends GetxController with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
     if (state == AppLifecycleState.detached) {
-      _userController.deleteUserData();
+      // _userController.deleteUserData();
     }
   }
 
   void login({required LoginData data, required String phoneNumber}) {
     DioRequest.login(data).then((value) {
       if (value != null) {
-        Get.toNamed(verifyCode);
-        verifyController.phoneNumber = '+63${phoneNumber.trim()}';
-        verifyController.verifyPhoneNumber();
-        verifyController.userData = value;
+        _userController.saveUserData(value).then(
+          (value) {
+            if (value) {
+              Get.offAllNamed(dashBoard);
+            } else {
+              print(value);
+            }
+          },
+        );
+
+        // Get.toNamed(verifyCode);
+        // verifyController.phoneNumber = '+63${phoneNumber.trim()}';
+        // verifyController.verifyPhoneNumber();
+        // verifyController.userData = value;
       } else {
         Get.snackbar(
           'Login Failed',

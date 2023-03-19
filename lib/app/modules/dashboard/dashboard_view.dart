@@ -28,8 +28,12 @@ class _DashboardViewState extends State<DashboardView> {
 
   @override
   void initState() {
-    _userController.getUserData().then((value) {
-      _connectionsController.isLoading.value = true;
+    super.initState();
+    _connectionsController.isLoading.value = true;
+
+    _userController.getUserData();
+    print(_userController.userData.id);
+    if (_userController.userData.id != null) {
       DioRequest.getConnections(_userController.userData.id).then((value) {
         _connectionsController.connectionsLength.value = value.length;
         setState(() {
@@ -37,9 +41,9 @@ class _DashboardViewState extends State<DashboardView> {
         });
         _connectionsController.isLoading.value = false;
       });
-    });
-
-    super.initState();
+    } else {
+      _connectionsController.isLoading.value = false;
+    }
   }
 
   @override
@@ -47,12 +51,20 @@ class _DashboardViewState extends State<DashboardView> {
     return Scaffold(
       //subject to change, make a separate dart file for appbar
       appBar: AppBar(
+        backgroundColor: transparent,
+        elevation: 0,
         title: const AppHeaderText(
           text: 'dashboard',
           style: kBoldHeaderStyle,
         ),
-        backgroundColor: transparent,
-        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle_rounded),
+            iconSize: 45,
+            color: tertiaryColor,
+            onPressed: () => Get.toNamed(profileView),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -66,7 +78,7 @@ class _DashboardViewState extends State<DashboardView> {
                 text: 'Your wallet balance is',
                 color: secondaryColor,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               AppHeaderText(
                 text: _userController.userData.balance == null
                     ? '\$0'
@@ -89,9 +101,9 @@ class _DashboardViewState extends State<DashboardView> {
                 style: kButtonStyle2,
                 outline: kOutlinedButton,
               ),
-              const SizedBox(height: 60),
+              const SizedBox(height: 40),
               const AppHeaderText(text: 'quick contacts'),
-              //replace with listviewbuilder
+              const SizedBox(height: 10),
               SizedBox(
                 height: 100,
                 child: ConnectionsBuilder(

@@ -14,7 +14,7 @@ class AppBottomSheet extends StatelessWidget {
   final String senderMobile;
   final String receiverMobile;
   final String amount;
-  final Function onPressed;
+  final void Function() onPressed;
   const AppBottomSheet({
     Key? key,
     required this.onPressed,
@@ -64,7 +64,7 @@ class AppBottomSheet extends StatelessWidget {
             AppFilledButton(
               text: 'Send Money',
               color: tertiaryColor,
-              onPressed: () {},
+              onPressed: onPressed,
             ),
           ],
         ),

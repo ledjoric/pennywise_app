@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
-import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/profile_icon.dart';
+import 'package:pennywise_app/app/modules/profile/profile_controller.dart';
 
 import '../../global/constants/colors.dart';
 import '../../global/constants/styles.dart';
@@ -17,6 +16,7 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  final _controller = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,17 +39,18 @@ class _ProfileViewState extends State<ProfileView> {
               const AppHeaderText(
                 text: 'Good day,',
               ),
-              const AppHeaderText(
-                text: 'Walter White',
+              AppHeaderText(
+                text:
+                    '${_controller.userController.userData.firstName} ${_controller.userController.userData.lastName}',
                 style: kBoldHeaderStyle,
               ),
               const SizedBox(height: 60),
-              const AppHeaderText(
-                text: '@walterwhite',
+              AppHeaderText(
+                text: _controller.userController.userData.email!,
               ),
               const SizedBox(height: 30),
-              const AppHeaderText(
-                text: '+63 918 920 4585',
+              AppHeaderText(
+                text: '+63${_controller.userController.userData.mobile}',
               ),
               const SizedBox(height: 100),
               AppFilledButton(

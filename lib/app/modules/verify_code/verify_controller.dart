@@ -43,14 +43,18 @@ class VerifyController extends GetxController {
           Get.offAllNamed(logIn);
         } else {
           userContoller.saveUserData(userData);
+          userContoller.getUserData();
+          print(userContoller.userData.firstName);
+          Get.offAllNamed(dashBoard);
+          // userContoller.saveUserData(userData);
 
-          userContoller.getUserData().then(
-            (value) {
-              if (value != null) {
-                Get.offAllNamed(dashBoard);
-              }
-            },
-          );
+          // userContoller.getUserData().then(
+          //   (value) {
+          //     if (value != null) {
+          //       Get.offAllNamed(dashBoard);
+          //     }
+          //   },
+          // );
         }
       }
     } on Exception {
