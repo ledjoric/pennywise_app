@@ -67,15 +67,6 @@ class SendMoneyController extends GetxController {
     DioRequest.transfer(userId, data).then((value) {
       if (value) {
         userController.fetchUserData().then((value) {
-          Get.snackbar(
-            'NA-TRANSFER NA!!!',
-            'AWTS BAWAS NA PERA MO.',
-            colorText: secondaryColor,
-            backgroundColor: Colors.grey[300],
-            // leftBarIndicatorColor: tertiaryColor,
-            duration: const Duration(seconds: 2),
-            borderRadius: 20,
-          );
           showConfirmedDialog(context);
         });
       } else {
