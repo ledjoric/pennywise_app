@@ -77,19 +77,18 @@ class _DashboardViewState extends State<DashboardView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 25),
                   const AppRegularText(
                     text: 'Your wallet balance is',
                     color: secondaryColor,
                   ),
-                  const SizedBox(height: 10),
                   AppHeaderText(
                     text: _userController.userData.balance == null
                         ? '\$0'
                         : '\$${_userController.userData.balance.toString()}',
                     style: kBalanceStyle,
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 25),
                   AppFilledButton(
                     text: 'Send Money',
                     color: tertiaryColor,

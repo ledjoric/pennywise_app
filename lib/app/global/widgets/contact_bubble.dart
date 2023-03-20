@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
+import 'package:pennywise_app/app/global/constants/fonts.dart';
+import 'package:pennywise_app/app/global/constants/styles.dart';
+import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 
 class ContactBubble extends StatelessWidget {
@@ -30,6 +33,7 @@ class ContactBubble extends StatelessWidget {
               child: Text(
                 name.isNotEmpty ? name[0].toUpperCase() : 'A',
                 style: const TextStyle(
+                  fontFamily: extraBoldFont,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 24,

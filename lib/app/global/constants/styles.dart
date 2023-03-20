@@ -43,8 +43,9 @@ const kRegTextStyle = TextStyle(
 
 const kBoldTextStyle = TextStyle(
   fontSize: fontSize,
-  fontFamily: extraBoldFont,
-  color: greyDark,
+  fontFamily: boldFont,
+  color: secondaryColor,
+  fontWeight: FontWeight.bold,
 );
 
 const kRegHeaderStyle = TextStyle(
