@@ -83,10 +83,18 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Visby
+    - family: VisbyMedium
       fonts:
         - asset: assets/fonts/VisbyMedium.otf
+    - family: VisbyBold
+      fonts:
         - asset: assets/fonts/VisbyBold.otf
+    - family: VisbyExtrabold
+      fonts:
+        - asset: assets/fonts/VisbyExtrabold.otf
+    - family: VisbyHeavy
+      fonts:
+        - asset: assets/fonts/VisbyHeavy.otf
           # style: bold
   #   - family: Trajan Pro
   #     fonts:

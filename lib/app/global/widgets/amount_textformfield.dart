@@ -14,27 +14,31 @@ class AmountTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: fieldHeight,
-      child: TextFormField(
-        // validator: validator,
-        controller: controller,
-        textAlign: TextAlign.center,
-        textAlignVertical: TextAlignVertical.bottom,
-        keyboardType: TextInputType.number,
-        style: kBoldHeaderStyle,
-        decoration: const InputDecoration(
-          prefixIcon: Text(
-            '\$',
-            style: kBoldHeaderStyle,
-          ),
-          prefixIconConstraints: BoxConstraints(
-            minWidth: 0,
-            minHeight: 0,
-          ),
-          hintText: '0.00',
-          contentPadding: EdgeInsets.only(
-            bottom: 12,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: SizedBox(
+        height: fieldHeight,
+        width: double.maxFinite,
+        child: TextFormField(
+          // validator: validator,
+          controller: controller,
+          textAlign: TextAlign.center,
+          textAlignVertical: TextAlignVertical.bottom,
+          keyboardType: TextInputType.number,
+          style: kBoldHeaderStyle,
+          decoration: const InputDecoration(
+            prefixIcon: Text(
+              '\$',
+              style: kBoldHeaderStyle,
+            ),
+            prefixIconConstraints: BoxConstraints(
+              minWidth: 0,
+              minHeight: 150,
+            ),
+            hintText: '0.00',
+            contentPadding: EdgeInsets.only(
+              bottom: 12,
+            ),
           ),
         ),
       ),

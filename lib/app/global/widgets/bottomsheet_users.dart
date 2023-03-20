@@ -36,10 +36,12 @@ class TransactionUsers extends StatelessWidget {
             text: sender,
             color: tertiaryColor,
             style: kBoldTextStyle,
+            align: TextAlign.left,
           ),
           subtitle: AppRegularText(
             text: '+63$senderMobile',
             color: greyDark,
+            align: TextAlign.left,
           ),
           trailing: const AppRegularText(
             text: 'Sender      ',
@@ -59,10 +61,12 @@ class TransactionUsers extends StatelessWidget {
             text: receiver,
             color: tertiaryColor,
             style: kBoldTextStyle,
+            align: TextAlign.left,
           ),
           subtitle: AppRegularText(
             text: '+63$receiverMobile',
             color: greyDark,
+            align: TextAlign.left,
           ),
           trailing: const AppRegularText(
             text: 'Receiver      ',

@@ -150,7 +150,7 @@ class _SignUpViewState extends State<SignUpView> {
                             text: ' Sign In.',
                             color: tertiaryColor,
                             onTap: () {
-                              Get.toNamed(logIn);
+                              Get.back();
                             },
                             style: kBoldTextStyle,
                           ),

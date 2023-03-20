@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: tertiaryColor,
       ),
-      initialRoute: logIn,
+      initialRoute: sendMoneyAmount,
       getPages: AppPages.pages,
     );
   }

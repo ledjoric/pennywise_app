@@ -34,7 +34,10 @@ class ConnectionsBuilder extends StatelessWidget {
           ? const Center(child: CircularProgressIndicator())
           : connectionLength.value == 0
               ? const Center(
-                  child: Text('WALA KANG CONNECTIONS'),
+                  child: AppRegularText(
+                    text: 'No contacts available.',
+                    color: secondaryColor,
+                  ),
                 )
               : GridView.builder(
                   shrinkWrap: true,

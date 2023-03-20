@@ -57,7 +57,6 @@ class _SendMoneyViewState extends State<SendMoneyView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const RedBox(),
                   const SizedBox(height: 40),
                   const AppHeaderText(
                     text: 'recipient\'s number',

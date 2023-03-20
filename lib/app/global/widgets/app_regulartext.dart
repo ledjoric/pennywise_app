@@ -6,6 +6,7 @@ class AppRegularText extends StatelessWidget {
   final Color color;
   final String text;
   final TextStyle? style;
+  final TextAlign? align;
 
   const AppRegularText({
     Key? key,
@@ -13,6 +14,7 @@ class AppRegularText extends StatelessWidget {
     required this.color,
     this.onTap,
     this.style,
+    this.align,
   }) : super(key: key);
 
   @override
@@ -22,6 +24,7 @@ class AppRegularText extends StatelessWidget {
       child: Text(
         text,
         style: style ?? kRegTextStyle,
+        textAlign: align ?? TextAlign.center,
       ),
     );
   }
