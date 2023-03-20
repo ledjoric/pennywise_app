@@ -1,17 +1,15 @@
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/modules/cash_in/cash_in_view.dart';
 import 'package:pennywise_app/app/modules/dashboard/dashboard_view.dart';
 import 'package:pennywise_app/app/modules/login/login_view.dart';
-import 'package:pennywise_app/app/modules/profile/profile_view.dart';
+import 'package:pennywise_app/app/modules/profile/edit_profile/edit_profile_view.dart';
+import 'package:pennywise_app/app/modules/profile/profile_view/profile_view.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_amount_view.dart';
 import 'package:pennywise_app/app/modules/send_money/sendmoney_view.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_view.dart';
 import 'package:pennywise_app/app/modules/splash_screen/splash_screen.dart';
+import 'package:pennywise_app/app/modules/verify_code/verify_view.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
-
-import '../modules/profile/edit_profile_view.dart';
-
-import '../modules/cash_in/cash_in_view.dart';
-import '../modules/verify_code/verify_view.dart';
 
 class AppPages {
   static var pages = [

@@ -36,15 +36,11 @@ class LoginController extends GetxController with WidgetsBindingObserver {
   void login({required LoginData data, required String phoneNumber}) {
     DioRequest.login(data).then((value) {
       if (value != null) {
-        _userController.saveUserData(value).then(
-          (value) {
-            if (value) {
-              Get.offAllNamed(dashBoard);
-            } else {
-              print(value);
-            }
-          },
-        );
+        _userController.saveCredentials(data).then((credData) {
+          _userController.saveUserData(value).then((value) {
+            Get.offAllNamed(dashBoard);
+          });
+        });
 
         // Get.toNamed(verifyCode);
         // verifyController.phoneNumber = '+63${phoneNumber.trim()}';

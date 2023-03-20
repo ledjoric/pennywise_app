@@ -9,7 +9,6 @@ class DashboardController extends GetxController {
   var isLoading = false.obs;
 
   final _userController = Get.put(UserController());
-  final _connectionsController = Get.put(ConnectionsController());
 
   @override
   void onInit() {

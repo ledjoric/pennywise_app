@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/widgets/app_regulartext.dart';
 import 'package:pennywise_app/app/global/widgets/transaction_card.dart';
@@ -7,6 +8,7 @@ import 'package:pennywise_app/app/models/transaction_history_data.dart';
 
 class TransactionsBuilder extends StatelessWidget {
   // final Widget listChild;
+  final int? userId;
   final Axis? scrollDirection;
   final double? childAspectRatio;
   final ScrollPhysics? physics;
@@ -20,6 +22,7 @@ class TransactionsBuilder extends StatelessWidget {
     this.physics,
     required this.transactions,
     required this.isLoading,
+    required this.userId,
   });
 
   @override
@@ -48,10 +51,28 @@ class TransactionsBuilder extends StatelessWidget {
                   ),
                   itemCount: transactions.length,
                   itemBuilder: (BuildContext context, int index) {
+                    final transaction = transactions[index];
+                    String type;
+                    String operator;
+
+                    // SET TRANSACTION TYPE AND AMOUNT OPERATOR
+                    if (transaction.sender == userId) {
+                      type = 'Send Money';
+                      operator = '-';
+                    } else {
+                      type = 'Receive Money';
+                      operator = '+';
+                    }
+
+                    final date = DateFormat('MMM d, yyyy h:mm a')
+                        .format(DateTime.parse(transaction.transactionDate!));
+
                     return TransactionCard(
-                        type: 'type',
-                        date: transactions[index].transactionDate,
-                        amount: transactions[index].amount.toString());
+                      type: type,
+                      date: date,
+                      amount: transaction.amount.toString(),
+                      operator: operator,
+                    );
                   },
                 ),
     );

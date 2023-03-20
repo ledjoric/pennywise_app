@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/constants/colors.dart';
+import 'package:pennywise_app/app/global/constants/styles.dart';
 import 'package:pennywise_app/app/global/widgets/app_filledbutton.dart';
+import 'package:pennywise_app/app/global/widgets/app_headertext.dart';
 import 'package:pennywise_app/app/global/widgets/profile_icon.dart';
-import 'package:pennywise_app/app/modules/profile/profile_controller.dart';
-
-import '../../global/constants/colors.dart';
-import '../../global/constants/styles.dart';
-import '../../global/widgets/app_headertext.dart';
+import 'package:pennywise_app/app/modules/profile/profile_view/profile_controller.dart';
+import 'package:pennywise_app/app/routes/route_names.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -25,7 +25,7 @@ class _ProfileViewState extends State<ProfileView> {
           text: 'profile',
           style: kBoldHeaderStyle,
         ),
-        backgroundColor: transparent,
+        // backgroundColor: transparent,
         elevation: 0,
       ),
       body: Padding(
@@ -56,7 +56,7 @@ class _ProfileViewState extends State<ProfileView> {
               AppFilledButton(
                 text: 'Edit Profile',
                 color: transparent,
-                onPressed: () {},
+                onPressed: () => Get.toNamed(editProfileView),
                 style: kButtonStyle2,
                 outline: kOutlinedButton,
               ),

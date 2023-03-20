@@ -11,7 +11,7 @@ import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://4ae7-136-158-28-187.ap.ngrok.io/api',
+      baseUrl: 'https://0cdb-110-93-82-74.ap.ngrok.io/api',
     ),
   );
 
@@ -40,7 +40,6 @@ class DioRequest {
       );
 
       if (response.statusCode == 200) {
-        var userController = Get.put(UserController());
         print('LOGGED IN');
         UserData userData = UserData.fromJson(response.data['user']);
         return userData;
@@ -76,6 +75,26 @@ class DioRequest {
     }
   }
 
+  static Future<bool> cashIn(int? userId, int amount) async {
+    try {
+      var response = await _dio.put(
+        '/user/dashboard/cashin',
+        queryParameters: {'user': userId},
+        data: {'amount': amount},
+        // options: Options(contentType: Headers.jsonContentType),
+      );
+
+      if (response.statusCode == 200) {
+        print('CASH IN SUCCESS');
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   static Future<List<Transactions>> getTransactions(int? userId) async {
     try {
       var response = await _dio.get(
@@ -86,7 +105,6 @@ class DioRequest {
       if (response.statusCode == 200) {
         TransactionHistoryData transactionData =
             TransactionHistoryData.fromJson(response.data);
-
         return transactionData.transactions!;
       }
     } on DioError catch (e) {

@@ -28,7 +28,7 @@ class _SMAmountViewState extends State<SMAmountView> {
           text: 'send money',
           style: kBoldHeaderStyle,
         ),
-        backgroundColor: transparent,
+        // backgroundColor: transparent,
         elevation: 0,
       ),
       body: SingleChildScrollView(

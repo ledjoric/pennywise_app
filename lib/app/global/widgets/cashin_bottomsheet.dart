@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
+import 'package:pennywise_app/app/modules/cash_in/cash_in_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 
 import '../constants/colors.dart';
@@ -17,6 +19,8 @@ class CashInBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _controller = Get.put(CashInController());
+    var _userController = Get.put(UserController());
     return Container(
       decoration: const BoxDecoration(
         borderRadius: kBottomSheetRadius,
@@ -41,36 +45,7 @@ class CashInBottomSheet extends StatelessWidget {
               text: 'Cash In',
               color: tertiaryColor,
               onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: kRadius,
-                          ),
-                          content: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Icon(
-                                  Icons.check_circle_outline_rounded,
-                                  size: 80,
-                                  color: tertiaryColor,
-                                ),
-                                SizedBox(height: 20),
-                                AppHeaderText(text: 'Success!'),
-                                SizedBox(height: 20),
-                                AppRegularText(
-                                  text: 'Cash-in transaction completed.',
-                                  color: secondaryColor,
-                                ),
-                              ],
-                            ),
-                          ),
-                        )).then(
-                  (value) => Get.offAllNamed(dashBoard),
-                );
+                _controller.cashIn(context);
               },
             ),
           ],

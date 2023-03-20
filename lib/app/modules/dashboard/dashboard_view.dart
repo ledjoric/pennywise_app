@@ -51,7 +51,7 @@ class _DashboardViewState extends State<DashboardView> {
     return Scaffold(
       //subject to change, make a separate dart file for appbar
       appBar: AppBar(
-        backgroundColor: transparent,
+        // backgroundColor: transparent,
         elevation: 0,
         title: const AppHeaderText(
           text: 'dashboard',
@@ -67,63 +67,74 @@ class _DashboardViewState extends State<DashboardView> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40),
-              const AppRegularText(
-                text: 'Your wallet balance is',
-                color: secondaryColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 40),
+                  const AppRegularText(
+                    text: 'Your wallet balance is',
+                    color: secondaryColor,
+                  ),
+                  const SizedBox(height: 10),
+                  AppHeaderText(
+                    text: _userController.userData.balance == null
+                        ? '\$0'
+                        : '\$${_userController.userData.balance.toString()}',
+                    style: kBalanceStyle,
+                  ),
+                  const SizedBox(height: 40),
+                  AppFilledButton(
+                    text: 'Send Money',
+                    color: tertiaryColor,
+                    onPressed: () {
+                      Get.toNamed(sendMoney);
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  AppFilledButton(
+                    text: 'Cash In',
+                    color: transparent,
+                    onPressed: () => Get.toNamed(cashIn),
+                    style: kButtonStyle2,
+                    outline: kOutlinedButton,
+                  ),
+                  const SizedBox(height: 40),
+                  const AppHeaderText(text: 'quick contacts'),
+                  const SizedBox(height: 10),
+                ],
               ),
-              const SizedBox(height: 10),
-              AppHeaderText(
-                text: _userController.userData.balance == null
-                    ? '\$0'
-                    : '\$${_userController.userData.balance.toString()}',
-                style: kBalanceStyle,
+            ),
+            SizedBox(
+              height: 105,
+              child: ConnectionsBuilder(
+                isLoading: _connectionsController.isLoading,
+                scrollDirection: Axis.horizontal,
+                childAspectRatio: 1.25,
+                connections: _connectionsController.connectionsData,
+                connectionLength: _connectionsController.connectionsLength,
               ),
-              const SizedBox(height: 40),
-              AppFilledButton(
-                text: 'Send Money',
-                color: tertiaryColor,
-                onPressed: () {
-                  Get.toNamed(sendMoney);
-                },
-              ),
-              const SizedBox(height: 10),
-              AppFilledButton(
-                text: 'Cash In',
-                color: transparent,
-                onPressed: () => Get.toNamed(cashIn),
-                style: kButtonStyle2,
-                outline: kOutlinedButton,
-              ),
-              const SizedBox(height: 40),
-              const AppHeaderText(text: 'quick contacts'),
-              const SizedBox(height: 10),
-              SizedBox(
-                height: 100,
-                child: ConnectionsBuilder(
-                  isLoading: _connectionsController.isLoading,
-                  scrollDirection: Axis.horizontal,
-                  childAspectRatio: 1.25,
-                  connections: _connectionsController.connectionsData,
-                  connectionLength: _connectionsController.connectionsLength,
-                ),
-              ),
-              const SizedBox(height: 20),
-              const AppHeaderText(text: 'transactions'),
-              TransactionsBuilder(
-                isLoading: _controller.isLoading,
-                physics: const NeverScrollableScrollPhysics(),
-                childAspectRatio: 5.5,
-                transactions: _controller.transactionsList,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: AppHeaderText(text: 'transactions'),
+            ),
+            TransactionsBuilder(
+              isLoading: _controller.isLoading,
+              physics: const NeverScrollableScrollPhysics(),
+              childAspectRatio: 5.5,
+              transactions: _controller.transactionsList,
+              userId: _userController.userData.id,
+            ),
+            const SizedBox(height: 30),
+          ],
         ),
       ),
     );

@@ -23,7 +23,6 @@ class _SendMoneyViewState extends State<SendMoneyView> {
   final searchController = TextEditingController();
   final _controller = Get.put(SendMoneyController());
   final _connectionsController = Get.put(ConnectionsController());
-  final userController = Get.put(UserController());
 
   @override
   void initState() {
@@ -46,7 +45,7 @@ class _SendMoneyViewState extends State<SendMoneyView> {
           text: 'send money',
           style: kBoldHeaderStyle,
         ),
-        backgroundColor: transparent,
+        // backgroundColor: transparent,
         elevation: 0,
       ),
       body: SingleChildScrollView(

@@ -29,7 +29,7 @@ class _CashInViewState extends State<CashInView> {
           text: 'cash in',
           style: kBoldHeaderStyle,
         ),
-        backgroundColor: transparent,
+        // backgroundColor: transparent,
         elevation: 0,
       ),
       body: SingleChildScrollView(

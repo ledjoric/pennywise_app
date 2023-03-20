@@ -42,7 +42,7 @@ class SendMoneyController extends GetxController {
             onPressed: () => sendMoney(
               userController.userData.id,
               TransferData(
-                receiver: userController.userData.mobile,
+                receiver: receiverData.mobile,
                 amount: int.parse(amountController.text),
               ),
               context,
@@ -66,16 +66,18 @@ class SendMoneyController extends GetxController {
   void sendMoney(int? userId, TransferData data, BuildContext context) {
     DioRequest.transfer(userId, data).then((value) {
       if (value) {
-        Get.snackbar(
-          'NA-TRANSFER NA!!!',
-          'AWTS BAWAS NA PERA MO.',
-          colorText: secondaryColor,
-          backgroundColor: Colors.grey[300],
-          // leftBarIndicatorColor: tertiaryColor,
-          duration: const Duration(seconds: 2),
-          borderRadius: 20,
-        );
-        showConfirmedDialog(context);
+        userController.fetchUserData().then((value) {
+          Get.snackbar(
+            'NA-TRANSFER NA!!!',
+            'AWTS BAWAS NA PERA MO.',
+            colorText: secondaryColor,
+            backgroundColor: Colors.grey[300],
+            // leftBarIndicatorColor: tertiaryColor,
+            duration: const Duration(seconds: 2),
+            borderRadius: 20,
+          );
+          showConfirmedDialog(context);
+        });
       } else {
         print('TRANSFER FAILED');
       }
