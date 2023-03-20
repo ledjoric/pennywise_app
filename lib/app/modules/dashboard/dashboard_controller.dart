@@ -17,28 +17,6 @@ class DashboardController extends GetxController {
     super.onInit();
   }
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   _connectionsController.isLoading.value = true;
-
-  //   var userData = _userController.getUserData();
-  //   if (userData != null) {
-  //     DioRequest.getConnections(userData.id).then((value) {
-  //       _connectionsController.connectionsLength.value = value.length;
-  //       _connectionsController.connectionsData = value;
-  //       _connectionsController.isLoading.value = false;
-  //     });
-  //   } else {
-  //     _connectionsController.isLoading.value = false;
-  //   }
-
-  //   ever(_connectionsController.connectionsData, (_) {
-  //     // Update the UI here
-  //     update();
-  //   });
-  // }
-
   void getTransaction() {
     isLoading.value = true;
 
