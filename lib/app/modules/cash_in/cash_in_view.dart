@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pennywise_app/app/global/widgets/amount_textformfield.dart';
 import 'package:pennywise_app/app/global/widgets/cashin_bottomsheet.dart';
 import 'package:pennywise_app/app/modules/cash_in/cash_in_controller.dart';
@@ -46,6 +47,7 @@ class _CashInViewState extends State<CashInView> {
                 child: Form(
                   key: _formkey,
                   child: AmountTextFormField(
+                    validator: (value) => _controller.amountValidate(value),
                     controller: _controller.amountController,
                   ),
                 ),
@@ -55,7 +57,9 @@ class _CashInViewState extends State<CashInView> {
                 text: 'Continue',
                 color: tertiaryColor,
                 onPressed: () {
-                  _controller.confirmTransfer(context);
+                  if (_formkey.currentState!.validate()) {
+                    _controller.confirmTransfer(context);
+                  }
                 },
               ),
             ],

@@ -137,6 +137,26 @@ class SendMoneyController extends GetxController {
     }
   }
 
+  String? amountValidate(String? value) {
+    if (value == null || value.isEmpty) {
+      return emptyTextFieldError;
+    } else if (!value.isNum) {
+      return 'Please enter a valid number';
+    } else if (value == '0') {
+      return 'Amount cannot be 0';
+    } else if (value.startsWith('0') && value != '0') {
+      return 'Amount cannot have leading zeros';
+    } else if (double.parse(value) < 0) {
+      return 'Amount must be positive';
+    } else if (double.parse(value) > 10000) {
+      return 'Amount exceeds maximum limit';
+    } else if (value.contains('.') && value.split('.')[1].length > 2) {
+      return 'Amount can only have up to 2 decimal places';
+    } else {
+      return null;
+    }
+  }
+
   void getReceiverData(dynamic receiver) {
     receiverData = UserData.fromJson(receiver);
     Get.toNamed(sendMoneyAmount);

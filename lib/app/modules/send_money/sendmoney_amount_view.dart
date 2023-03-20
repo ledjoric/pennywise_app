@@ -45,6 +45,7 @@ class _SMAmountViewState extends State<SMAmountView> {
                 child: Form(
                   key: _formkey,
                   child: AmountTextFormField(
+                    validator: (value) => _controller.amountValidate(value),
                     controller: _controller.amountController,
                   ),
                 ),
@@ -53,7 +54,11 @@ class _SMAmountViewState extends State<SMAmountView> {
               AppFilledButton(
                 text: 'Continue',
                 color: tertiaryColor,
-                onPressed: () => _controller.viewTransactionSummary(context),
+                onPressed: () {
+                  if (_formkey.currentState!.validate()) {
+                    _controller.viewTransactionSummary(context);
+                  }
+                },
               ),
             ],
           ),

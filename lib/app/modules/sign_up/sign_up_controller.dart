@@ -62,7 +62,7 @@ class SignUpController extends GetxController {
     } else if (value.length < 10 && value.isNotEmpty) {
       return 'The mobile number must be at least 10 characters.';
     } else if (!value.isNum) {
-      return 'This is an invalid phone number';
+      return 'Please enter a valid phone number, example: 9123456789';
     }
     return null;
   }
