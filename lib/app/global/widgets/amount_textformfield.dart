@@ -38,7 +38,7 @@ class AmountTextFormField extends StatelessWidget {
             ),
             hintText: '0.00',
             contentPadding: EdgeInsets.only(
-              bottom: 12,
+              bottom: 0,
             ),
           ),
         ),

@@ -20,21 +20,19 @@ const BorderRadius kBottomSheetRadius = BorderRadius.only(
 
 const kFieldStyle = TextStyle(
   fontSize: fontSize,
-  fontFamily: boldFont,
+  fontFamily: mediumFont,
 );
 
 const kButtonStyle = TextStyle(
   fontSize: fontSize,
   fontFamily: boldFont,
   color: primaryColor,
-  fontWeight: FontWeight.bold,
 );
 
 const kButtonStyle2 = TextStyle(
   fontSize: fontSize,
   fontFamily: boldFont,
   color: secondaryColor,
-  fontWeight: FontWeight.bold,
 );
 
 const kRegTextStyle = TextStyle(
@@ -47,27 +45,26 @@ const kBoldTextStyle = TextStyle(
   fontSize: fontSize,
   fontFamily: extraBoldFont,
   color: greyDark,
-  fontWeight: FontWeight.bold,
 );
 
 const kRegHeaderStyle = TextStyle(
   fontSize: headerFont,
   color: secondaryColor,
   fontFamily: boldFont,
+  letterSpacing: 0.005,
 );
 
 const kBalanceStyle = TextStyle(
   fontSize: balanceFont,
   color: secondaryColor,
-  fontFamily: boldFont,
-  fontWeight: FontWeight.bold,
+  fontFamily: extraBoldFont,
 );
 
 const kBoldHeaderStyle = TextStyle(
   fontSize: headerFont,
   color: secondaryColor,
-  fontWeight: FontWeight.bold,
   fontFamily: heavyFont,
+  fontWeight: FontWeight.bold,
 );
 
 const kIconBox = BoxDecoration(

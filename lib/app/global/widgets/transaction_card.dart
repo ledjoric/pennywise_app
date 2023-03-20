@@ -24,14 +24,17 @@ class TransactionCard extends StatelessWidget {
         text: type,
         color: tertiaryColor,
         style: kBoldTextStyle,
+        align: TextAlign.left,
       ),
       subtitle: AppRegularText(
         text: date!,
         color: greyDark,
+        align: TextAlign.left,
       ),
       trailing: AppRegularText(
         text: '$operator \$$amount',
         color: tertiaryColor,
+        style: kBoldTextStyle,
       ),
     );
   }

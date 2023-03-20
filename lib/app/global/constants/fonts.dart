@@ -1,7 +1,7 @@
-const dynamic heavyFont = 'VisbyHeavy';
-const dynamic extraBoldFont = 'VisbyExtrabold';
-const dynamic boldFont = 'VisbyBold';
-const dynamic mediumFont = 'VisbyMedium';
+const String heavyFont = 'VisbyHeavy';
+const String extraBoldFont = 'VisbyExtrabold';
+const String boldFont = 'VisbyBold';
+const String mediumFont = 'VisbyMedium';
 
 const double fontSize = 18;
 const double headerFont = 32;
