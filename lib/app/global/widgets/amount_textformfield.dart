@@ -5,10 +5,11 @@ import '../constants/styles.dart';
 
 class AmountTextFormField extends StatelessWidget {
   final TextEditingController controller;
-  // final String? Function(String?)? validator;
+  final String? Function(String?)? validator;
   const AmountTextFormField({
     Key? key,
     required this.controller,
+    this.validator,
     // required this.validator,
   }) : super(key: key);
 
@@ -17,7 +18,7 @@ class AmountTextFormField extends StatelessWidget {
     return SizedBox(
       height: fieldHeight,
       child: TextFormField(
-        // validator: validator,
+        validator: validator,
         controller: controller,
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.bottom,

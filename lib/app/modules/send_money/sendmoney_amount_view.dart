@@ -45,6 +45,7 @@ class _SMAmountViewState extends State<SMAmountView> {
                 child: Form(
                   key: _formkey,
                   child: AmountTextFormField(
+                    validator: (value) => _controller.amountValidate(value),
                     controller: _controller.amountController,
                   ),
                 ),
