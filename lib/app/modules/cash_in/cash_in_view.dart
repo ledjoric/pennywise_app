@@ -41,6 +41,7 @@ class _CashInViewState extends State<CashInView> {
               const SizedBox(height: 40),
               const AppHeaderText(
                 text: 'select amount',
+                style: kSmallHeaderStyle,
               ),
               const SizedBox(height: 10),
               IntrinsicWidth(

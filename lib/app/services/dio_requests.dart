@@ -11,7 +11,7 @@ import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://0cdb-110-93-82-74.ap.ngrok.io/api',
+      baseUrl: 'https://4cc3-110-93-82-74.ap.ngrok.io/api',
     ),
   );
 

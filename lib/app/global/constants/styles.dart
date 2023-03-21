@@ -55,6 +55,13 @@ const kRegHeaderStyle = TextStyle(
   letterSpacing: 0.005,
 );
 
+const kSmallHeaderStyle = TextStyle(
+  fontSize: subtitleFont,
+  color: secondaryColor,
+  fontFamily: boldFont,
+  letterSpacing: 0.005,
+);
+
 const kBalanceStyle = TextStyle(
   fontSize: balanceFont,
   color: secondaryColor,
