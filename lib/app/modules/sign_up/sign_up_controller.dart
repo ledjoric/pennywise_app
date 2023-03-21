@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/strings.dart';
+import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/modules/verify_code/verify_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
@@ -13,8 +14,11 @@ class SignUpController extends GetxController {
   final formKey = GlobalKey<FormState>();
   var verifyController = Get.put(VerifyController());
 
-  void signUpUser({required RegisterData data, String phoneNumber = ''}) {
-    DioRequest.register(data).then((value) {
+  void validateUser(
+      {required LoginData validate,
+      required RegisterData data,
+      String phoneNumber = ''}) {
+    DioRequest.registerValidate(validate).then((value) {
       if (value != null) {
         emailError.value = value['email'].toString();
         mobileError.value = value['mobile'].toString();
@@ -24,6 +28,8 @@ class SignUpController extends GetxController {
       }
 
       if (formKey.currentState!.validate()) {
+        verifyController.isRegister = true;
+        verifyController.registerData = data;
         verifyController.phoneNumber = '+63${phoneNumber.trim()}';
         verifyController.verifyPhoneNumber();
         Get.toNamed(verifyCode);
@@ -63,6 +69,8 @@ class SignUpController extends GetxController {
       return 'The mobile number must be at least 10 characters.';
     } else if (!value.isNum) {
       return 'Please enter a valid phone number, example: 9123456789';
+    } else if (value.isNotEmpty && value[0] != '9') {
+      return 'The mobile number must start with the digit 9. Please enter a valid phone number, example: 9123456789';
     }
     return null;
   }

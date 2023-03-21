@@ -41,7 +41,6 @@ class LoginController extends GetxController with WidgetsBindingObserver {
             Get.offAllNamed(dashBoard);
           });
         });
-
         // Get.toNamed(verifyCode);
         // verifyController.phoneNumber = '+63${phoneNumber.trim()}';
         // verifyController.verifyPhoneNumber();

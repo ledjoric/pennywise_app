@@ -11,9 +11,25 @@ import 'package:pennywise_app/app/modules/send_money/sendmoney_controller.dart';
 class DioRequest {
   static final _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://0cdb-110-93-82-74.ap.ngrok.io/api',
+      baseUrl: 'https://4cc3-110-93-82-74.ap.ngrok.io/api',
     ),
   );
+
+  static Future registerValidate(LoginData data) async {
+    try {
+      var response = await _dio.post(
+        '/auth/register/validate',
+        data: data.toJson(),
+      );
+
+      if (response.statusCode == 200) {
+        return null;
+      }
+    } on DioError catch (e) {
+      var errorResponse = e.response!.data['errors'];
+      return errorResponse;
+    }
+  }
 
   static Future register(RegisterData data) async {
     try {
@@ -27,7 +43,7 @@ class DioRequest {
         return null;
       }
     } on DioError catch (e) {
-      var errorResponse = e.response!.data['errors'];
+      var errorResponse = e.response!.statusCode;
       return errorResponse;
     }
   }

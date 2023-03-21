@@ -17,7 +17,8 @@ Future main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: tertiaryColor,
+      statusBarColor: transparent,
+      statusBarIconBrightness: Brightness.dark,
     ),
   );
   runApp(const MyApp());

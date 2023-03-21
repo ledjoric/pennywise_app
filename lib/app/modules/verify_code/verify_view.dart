@@ -21,9 +21,10 @@ class VerifyView extends StatefulWidget {
 class _VerifyViewState extends State<VerifyView> {
   final otpController = TextEditingController();
 
+  final _controller = Get.put(VerifyController());
+
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(VerifyController());
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -45,8 +46,9 @@ class _VerifyViewState extends State<VerifyView> {
                 const SizedBox(height: 40),
                 const AppRegularText(
                   text:
-                      'Verify your account by Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                      'Please enter the OTP code sent to your registered mobile number to verify your mobile number. This code is valid for 30 seconds. Once verified, you will have access to your account.',
                   color: secondaryColor,
+                  align: TextAlign.left,
                 ),
                 const SizedBox(height: 40),
                 PInput(
@@ -58,7 +60,7 @@ class _VerifyViewState extends State<VerifyView> {
                   color: tertiaryColor,
                   onPressed: () {
                     // controller.verifyPhoneNumber();
-                    controller.verifyOTP(
+                    _controller.verifyOTP(
                       code: otpController.text,
                     );
                   },
@@ -68,18 +70,21 @@ class _VerifyViewState extends State<VerifyView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const AppRegularText(
-                      text: 'Resend code in',
+                      text: 'Resend code in   ',
                       color: tertiaryColor,
                     ),
-                    AppRegularText(
-                      text: ' 00:00',
-                      color: tertiaryColor,
-                      onTap: () {
-                        //placeholder
-                        debugPrint("Register");
-                      },
-                      style: kBoldTextStyle,
-                    ),
+                    Obx(
+                      () => AppRegularText(
+                        text: _controller.seconds.value > 0
+                            ? _controller.seconds.value.toString()
+                            : 'Resend Code',
+                        color: tertiaryColor,
+                        onTap: _controller.seconds.value > 0
+                            ? null
+                            : _controller.resendOTP,
+                        style: kBoldTextStyle,
+                      ),
+                    )
                   ],
                 ),
               ],
