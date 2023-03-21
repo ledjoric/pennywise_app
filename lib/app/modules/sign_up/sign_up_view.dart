@@ -39,7 +39,7 @@ class _SignUpViewState extends State<SignUpView> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.fromLTRB(20, 80, 20, 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
