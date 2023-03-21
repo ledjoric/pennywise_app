@@ -66,6 +66,7 @@ const kBoldHeaderStyle = TextStyle(
   color: secondaryColor,
   fontFamily: heavyFont,
   fontWeight: FontWeight.bold,
+  height: 0.75,
 );
 
 const kIconBox = BoxDecoration(
