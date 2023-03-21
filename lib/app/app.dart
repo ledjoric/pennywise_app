@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorSchemeSeed: tertiaryColor,
       ),
-      initialRoute: verifyCode,
+      initialRoute: logIn,
       getPages: AppPages.pages,
     );
   }
