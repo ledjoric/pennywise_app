@@ -38,10 +38,12 @@ class ContactCard extends StatelessWidget {
         text: name,
         color: tertiaryColor,
         style: kBoldTextStyle,
+        align: TextAlign.start,
       ),
       subtitle: AppRegularText(
         text: '+63${mobile.trim()}',
         color: greyDark,
+        align: TextAlign.start,
       ),
     );
   }

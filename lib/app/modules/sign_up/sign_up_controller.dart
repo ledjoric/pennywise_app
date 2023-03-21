@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pennywise_app/app/global/constants/strings.dart';
-import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
+import 'package:pennywise_app/app/models/register_validate_data.dart';
 import 'package:pennywise_app/app/modules/verify_code/verify_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
 import 'package:pennywise_app/app/services/dio_requests.dart';
@@ -15,13 +15,15 @@ class SignUpController extends GetxController {
   var verifyController = Get.put(VerifyController());
 
   void validateUser(
-      {required LoginData validate,
+      {required RegisterValidate validate,
       required RegisterData data,
       String phoneNumber = ''}) {
     DioRequest.registerValidate(validate).then((value) {
       if (value != null) {
-        emailError.value = value['email'].toString();
-        mobileError.value = value['mobile'].toString();
+        emailError.value =
+            value['email'] == null ? '' : value['email'].toString();
+        mobileError.value =
+            value['mobile'] == null ? '' : value['mobile'].toString();
       } else {
         emailError.value = '';
         mobileError.value = '';
@@ -42,6 +44,8 @@ class SignUpController extends GetxController {
       return 'Password did not match';
     } else if (value == null || value.isEmpty) {
       return emptyTextFieldError;
+    } else if (value.length < 8) {
+      return 'Password must be at least 8 characters';
     } else {
       return null;
     }

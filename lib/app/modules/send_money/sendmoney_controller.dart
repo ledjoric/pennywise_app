@@ -56,8 +56,8 @@ class SendMoneyController extends GetxController {
         'Please enter the amount to be transferred.',
         colorText: secondaryColor,
         backgroundColor: Colors.grey[300],
-        // leftBarIndicatorColor: tertiaryColor,
         duration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 500),
         borderRadius: 20,
       );
     }
@@ -159,6 +159,20 @@ class SendMoneyController extends GetxController {
 
   void getReceiverData(dynamic receiver) {
     receiverData = UserData.fromJson(receiver);
-    Get.toNamed(sendMoneyAmount);
+
+    userController.getUserData();
+    if (userController.userData.isVerified == 1) {
+      Get.toNamed(sendMoneyAmount);
+    } else {
+      Get.snackbar(
+        'Email Verification Required',
+        'Please verify your email before sending money. Check your inbox or spam folder for an email from us.',
+        colorText: secondaryColor,
+        backgroundColor: Colors.grey[300],
+        duration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 500),
+        borderRadius: 20,
+      );
+    }
   }
 }

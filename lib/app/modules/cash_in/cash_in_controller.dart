@@ -34,6 +34,11 @@ class CashInController extends GetxController {
         Get.snackbar(
           'Cash In Failed',
           'There was an error processing your cash in request.',
+          colorText: secondaryColor,
+          backgroundColor: Colors.grey[300],
+          duration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 500),
+          borderRadius: 20,
         );
       }
     });

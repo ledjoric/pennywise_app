@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
-import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
+import 'package:pennywise_app/app/models/register_validate_data.dart';
 import 'package:pennywise_app/app/models/transaction_history_data.dart';
 import 'package:pennywise_app/app/models/transfer_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
@@ -15,7 +18,7 @@ class DioRequest {
     ),
   );
 
-  static Future registerValidate(LoginData data) async {
+  static Future registerValidate(RegisterValidate data) async {
     try {
       var response = await _dio.post(
         '/auth/register/validate',
@@ -58,6 +61,8 @@ class DioRequest {
       if (response.statusCode == 200) {
         print('LOGGED IN');
         UserData userData = UserData.fromJson(response.data['user']);
+        print(response.data['access_token']);
+        saveAccessToken(response.data['access_token']);
         return userData;
       }
       return null;
@@ -65,6 +70,42 @@ class DioRequest {
       print(e);
       return null;
     }
+  }
+
+  static Future logout() async {
+    try {
+      String token = getAccessToken();
+      var response = await _dio.post(
+        '/auth/logout',
+        options: Options(
+          headers: {'Authorization': 'Bearer $token'},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        print('LOGGED OUT');
+        return true;
+      }
+      return false;
+    } on DioError catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  // ACCESS TOKEN SAVE, GET, DELETE
+  static void saveAccessToken(String accessToken) {
+    final getStorage = GetStorage();
+    getStorage.remove('access_token');
+    getStorage.write('access_token', accessToken);
+  }
+
+  static String getAccessToken() {
+    return GetStorage().read('access_token');
+  }
+
+  static void deleteAccessToken() {
+    GetStorage().remove('access_token');
   }
 
   static Future transfer(int? userId, TransferData data) async {
@@ -168,7 +209,7 @@ class DioRequest {
       if (response.statusCode == 200) {
         print('CONNECTIONS');
         var connectionsJson = response.data['connections'];
-        print(connectionsJson.length);
+        // print(connectionsJson.length);
         return connectionsJson;
       }
     } on DioError catch (e) {

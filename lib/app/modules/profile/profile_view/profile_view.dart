@@ -60,6 +60,13 @@ class _ProfileViewState extends State<ProfileView> {
                 style: kButtonStyle2,
                 outline: kOutlinedButton,
               ),
+              AppFilledButton(
+                text: 'Logout',
+                color: transparent,
+                onPressed: () => _controller.logOut(),
+                style: kButtonStyle2,
+                outline: kOutlinedButton,
+              ),
             ],
           ),
         ),

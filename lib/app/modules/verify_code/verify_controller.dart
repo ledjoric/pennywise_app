@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pennywise_app/app/global/constants/colors.dart';
 import 'package:pennywise_app/app/global/global_controller.dart/user_controller.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
 import 'package:pennywise_app/app/models/user_data.dart';
@@ -99,8 +100,10 @@ class VerifyController extends GetxController {
       Get.snackbar(
         'Verification Failed',
         'Sorry, the OTP entered is invalid. Please try again.',
+        colorText: secondaryColor,
         backgroundColor: Colors.grey[300],
         duration: const Duration(seconds: 2),
+        animationDuration: const Duration(milliseconds: 500),
         borderRadius: 20,
       );
     }
@@ -109,11 +112,16 @@ class VerifyController extends GetxController {
   void signUpUser({required RegisterData data}) async {
     DioRequest.register(data).then((value) {
       if (value == null) {
-        Get.offAllNamed(dashBoard);
+        Get.offAllNamed(logIn);
       } else {
         Get.snackbar(
           'Registration Failed: Internal Server Error',
           'We are sorry, but our server encountered an unexpected problem.',
+          colorText: secondaryColor,
+          backgroundColor: Colors.grey[300],
+          duration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 500),
+          borderRadius: 20,
         );
       }
     });

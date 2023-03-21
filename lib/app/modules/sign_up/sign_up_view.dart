@@ -10,6 +10,7 @@ import 'package:pennywise_app/app/global/widgets/divider.dart';
 import 'package:pennywise_app/app/global/widgets/logo_container.dart';
 import 'package:pennywise_app/app/models/login_data.dart';
 import 'package:pennywise_app/app/models/register_data.dart';
+import 'package:pennywise_app/app/models/register_validate_data.dart';
 import 'package:pennywise_app/app/modules/sign_up/sign_up_controller.dart';
 import 'package:pennywise_app/app/modules/verify_code/verify_controller.dart';
 import 'package:pennywise_app/app/routes/route_names.dart';
@@ -123,9 +124,9 @@ class _SignUpViewState extends State<SignUpView> {
                       onPressed: () {
                         if (controller.formKey.currentState!.validate()) {
                           controller.validateUser(
-                            validate: LoginData(
+                            validate: RegisterValidate(
                               mobile: phoneNumberController.text,
-                              password: passwordController.text,
+                              email: emailController.text,
                             ),
                             data: RegisterData(
                               firstName: firstNameController.text,

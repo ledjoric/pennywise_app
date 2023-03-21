@@ -51,8 +51,8 @@ class LoginController extends GetxController with WidgetsBindingObserver {
           'Your email/password is incorrect',
           colorText: secondaryColor,
           backgroundColor: Colors.grey[300],
-          // leftBarIndicatorColor: tertiaryColor,
           duration: const Duration(seconds: 2),
+          animationDuration: const Duration(milliseconds: 500),
           borderRadius: 20,
         );
         print('LOGIN FAILED');

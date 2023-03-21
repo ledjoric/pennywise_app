@@ -93,7 +93,7 @@ class _DashboardViewState extends State<DashboardView> {
                     text: 'Send Money',
                     color: tertiaryColor,
                     onPressed: () {
-                      Get.toNamed(sendMoney);
+                      _controller.goToSendMoney();
                     },
                   ),
                   const SizedBox(height: 10),
