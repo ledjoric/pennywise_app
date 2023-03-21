@@ -39,6 +39,7 @@ class _SMAmountViewState extends State<SMAmountView> {
               const SizedBox(height: 40),
               const AppHeaderText(
                 text: 'select amount',
+                style: kSmallHeaderStyle,
               ),
               const SizedBox(height: 10),
               IntrinsicWidth(

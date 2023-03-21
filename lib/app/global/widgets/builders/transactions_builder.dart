@@ -35,7 +35,7 @@ class TransactionsBuilder extends StatelessWidget {
                   height: 100,
                   child: Center(
                     child: AppRegularText(
-                      text: 'No transactions yet.\nSend money or cash in!',
+                      text: 'No transactions yet.',
                       color: secondaryColor,
                     ),
                   ),

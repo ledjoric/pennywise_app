@@ -105,7 +105,10 @@ class _DashboardViewState extends State<DashboardView> {
                     outline: kOutlinedButton,
                   ),
                   const SizedBox(height: 40),
-                  const AppHeaderText(text: 'quick contacts'),
+                  const AppHeaderText(
+                    text: 'quick contacts',
+                    style: kSmallHeaderStyle,
+                  ),
                   const SizedBox(height: 10),
                 ],
               ),
@@ -123,7 +126,10 @@ class _DashboardViewState extends State<DashboardView> {
             const SizedBox(height: 20),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: AppHeaderText(text: 'transactions'),
+              child: AppHeaderText(
+                text: 'transactions',
+                style: kSmallHeaderStyle,
+              ),
             ),
             TransactionsBuilder(
               isLoading: _controller.isLoading,

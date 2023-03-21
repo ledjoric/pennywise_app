@@ -39,7 +39,10 @@ class AppBottomSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const AppHeaderText(text: 'confirm transfer?'),
+            const AppHeaderText(
+              text: 'confirm transfer?',
+              style: kSmallHeaderStyle,
+            ),
             const SizedBox(height: 20),
             AppHeaderText(
               text: '\$$amount',

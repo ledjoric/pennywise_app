@@ -60,6 +60,7 @@ class _SendMoneyViewState extends State<SendMoneyView> {
                   const SizedBox(height: 40),
                   const AppHeaderText(
                     text: 'recipient\'s number',
+                    style: kSmallHeaderStyle,
                   ),
                   const SizedBox(height: 20),
                   Form(
@@ -84,7 +85,10 @@ class _SendMoneyViewState extends State<SendMoneyView> {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
-                  child: AppHeaderText(text: 'connections list'),
+                  child: AppHeaderText(
+                    text: 'connections list',
+                    style: kSmallHeaderStyle,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 ConnectionsBuilder(
